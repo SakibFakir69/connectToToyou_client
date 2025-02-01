@@ -18,6 +18,12 @@ createRoot(document.getElementById("root")).render(
 
         {/* home here */}
 
+
+
+
+
+        
+
         {/* authlayout */}
         <Route path="account">
           {/* this is parent */}
@@ -27,6 +33,9 @@ createRoot(document.getElementById("root")).render(
           <Route path="/account/login" element={<Login />} />
           <Route path="/account/registation" element={<Regsisation />} />
         </Route>
+
+
+
       </Routes>
     </BrowserRouter>
   </StrictMode>

@@ -1,3 +1,9 @@
 @import "tailwindcss";
 @import "tailwindcss";
 @plugin "daisyui";
+
+
+
+.custome_color_for_login{
+    background-color: #121212;
+}
