@@ -13,22 +13,41 @@ function Login() {
     animationData: LottieLoginAnimation,
   };
 
-  return (
-    <div className="bg-gradient-to-br from-fuchsia-300 to-red-600/30 h-screen flex justify-center py-10 ">
-      <section class="hover:border-2 hover:border-teal-300/30  md:flex rounded p-2 backdrop-blur-md bg-black transform transition delay-100">
+  //   handle form
 
+  const handleLoginFormSb= async (event)=>{
+
+    event.preventDefault();
+    const form_info= new FormData(event.target);
+    const form_data = Object.fromEntries(form_info);
+    const {email , password} = form_data;
+    console.log({email , password});
+
+
+  }
+
+  return (
+    <div className="bg-gradient-to-br from-fuchsia-300 to-red-600/30  flex justify-center py-10  w-full min-h-screen">
+
+
+
+
+      <section class="hover:border-2 hover:border-teal-300/30  md:flex rounded p-2 backdrop-blur-md bg-black transform transition delay-100  border-2 min-h-screen ">
 
 
         <div className="flex-1  text-center bg-stone-100">
-
-
           <h2 className="text-4xl font-semibold">Login Now!</h2>
-          <Lottie options={animationOption} height={400} width={400} />
+
+
+       <div className="border">
+       <Lottie options={animationOption}  />
+       </div>
         </div>
 
-        <div className="flex-1  custome_color_for_login text-white min-w-[400px] p-2 ">
-          <form className=" r">
-            <div className="flex flex-col mb-4">
+
+        <div className="flex-1  custome_color_for_login text-white  p-2 py-10  md:mt-16">
+          <form className=" " onSubmit={handleLoginFormSb}>
+            <div className="flex flex-col">
               <label htmlFor="" className="font-semibold">
                 Email :{" "}
               </label>
@@ -41,7 +60,7 @@ function Login() {
               />
             </div>
             {/* password */}
-            <div className="flex flex-col mb-4 md:py-6">
+            <div className="flex flex-col mb-2 md:py-4">
               <label htmlFor="" className="font-semibold">
                 Password :{" "}
               </label>
@@ -52,9 +71,6 @@ function Login() {
                 hover:outline-blue-900
                 
                 "
-
-
-
                 name="password"
                 type="passsword"
                 placeholder="Enter your email"
@@ -100,11 +116,13 @@ function Login() {
 
             {/* no account */}
             <div className="text-center mt-4">
-                <p>I have not account <Link to={'/account/registation'} className="text-green-300">Register Now!</Link></p>
+              <p>
+                I have not account{" "}
+                <Link to={"/account/registation"} className="text-green-300">
+                  Register Now!
+                </Link>
+              </p>
             </div>
-
-
-
           </div>
         </div>
       </section>
