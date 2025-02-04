@@ -7,6 +7,14 @@ import Lottie from "react-lottie";
 import { Link } from "react-router";
 
 function Login() {
+  // validation 
+  /// server send 
+  // implement alert 
+
+  const {LoginWith_email_ans_password_handle,Login_with_Google_handle , setloading , setuser } = AuthMangedHook();
+
+
+
   const animationOption = {
     loop: true,
     autoplay: true,
@@ -15,19 +23,45 @@ function Login() {
 
   //   handle form
 
-  const handleLoginFormSb= async (event)=>{
+  const handleLoginFormSubmit= async (event)=>{
 
     event.preventDefault();
     const form_info= new FormData(event.target);
     const form_data = Object.fromEntries(form_info);
     const {email , password} = form_data;
     console.log({email , password});
+    setloading(true);
+
+
+    LoginWith_email_ans_password_handle(email, password)
+    .then((result)=>{
+      setloading(false)
+
+    })
+    .catch((error)=>{
+      console.log('this error from login page',error.name)
+    })
+
+    // google login fomrm
+
+    const Login_in_with_google_handle = () =>{
+      setloading(true);
+      Login_with_Google_handle()
+      .then((result)=>{
+        setloading(false);
+
+
+      })
+      .catch((error)=>{
+        console.log(` we founed error on google login page `,error.code)
+      })
+    }
 
 
   }
 
   return (
-    <div className="bg-gradient-to-br from-fuchsia-300 to-red-600/30  flex justify-center py-10  w-full min-h-screen">
+    <div className="bg-gradient-to-br from-slate-900 to-teal-500  flex justify-center py-10  w-full min-h-screen">
 
 
 
@@ -48,7 +82,7 @@ function Login() {
 
         <div className="flex-1   text-white  p-2  md:mt-16">
 
-          <form className=" py-10" onSubmit={handleLoginFormSb}>
+          <form className=" py-10" onSubmit={handleLoginFormSubmit}>
             <div className="flex flex-col">
 
               <label htmlFor="" className="font-semibold">

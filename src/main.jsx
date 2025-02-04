@@ -8,10 +8,12 @@ import MainLayouts from "./Layout/MainLayouts.jsx";
 import AuthLayout from "./Layout/AuthLayout.jsx";
 import Login from "./AccountAuth/Login.jsx";
 import Regsisation from "./AccountAuth/Regsisation.jsx";
+import AuthContext from "./Context/AuthContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
+   <AuthContext>
+   <BrowserRouter>
       {/* main */}
       <Routes>
         <Route index element={<MainLayouts />} />
@@ -38,5 +40,7 @@ createRoot(document.getElementById("root")).render(
 
       </Routes>
     </BrowserRouter>
+   </AuthContext>
+
   </StrictMode>
 );
