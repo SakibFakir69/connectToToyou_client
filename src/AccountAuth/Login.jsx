@@ -32,22 +32,25 @@ function Login() {
 
 
 
-      <section class="hover:border-2 hover:border-teal-300/30  md:flex rounded p-2 backdrop-blur-md bg-black transform transition delay-100  border-2 min-h-screen ">
+      <section class="hover:border-2 hover:border-teal-300/30  md:flex rounded  backdrop-blur-md bg-black transform transition delay-100  border-2 min-h-screen  ">
 
 
         <div className="flex-1  text-center bg-stone-100">
           <h2 className="text-4xl font-semibold">Login Now!</h2>
+          <p>Login and conect your friend and free spech</p>
 
 
-       <div className="border">
+       <div className="">
        <Lottie options={animationOption}  />
        </div>
         </div>
 
 
-        <div className="flex-1  custome_color_for_login text-white  p-2 py-10  md:mt-16">
-          <form className=" " onSubmit={handleLoginFormSb}>
+        <div className="flex-1   text-white  p-2  md:mt-16">
+
+          <form className=" py-10" onSubmit={handleLoginFormSb}>
             <div className="flex flex-col">
+
               <label htmlFor="" className="font-semibold">
                 Email :{" "}
               </label>
