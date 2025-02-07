@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useSyncExternalStore } from "react";
 
 import "./account.css";
 
@@ -6,15 +6,17 @@ import LottieLoginAnimation from "../../public/Animation - 1738435419733.json";
 import Lottie from "react-lottie";
 import { Link, useNavigate } from "react-router";
 import useAuthMangedHook from "../hook/useAuthMangedHook";
+import usePublicHook from "../Api/usePublicHook";
 
 function Login() {
-  // validation 
-  /// server send 
-  // implement alert 
+ 
+
+  const useaxiosPublic = usePublicHook();
 
   const {LoginWith_email_ans_password_handle,Login_with_Google_handle , setloading , setuser } = useAuthMangedHook();
 
   const goHome = useNavigate();
+
 
 
 
@@ -29,6 +31,12 @@ function Login() {
 
   const handleLoginFormSubmit=  (event)=>{
 
+    const [ error , seterror ] = useState("");
+    // add google user
+    /// add to databse 
+    // password validation
+
+
     event.preventDefault();
     const form_info= new FormData(event.target);
     const form_data = Object.fromEntries(form_info);
@@ -39,14 +47,17 @@ function Login() {
 
     LoginWith_email_ans_password_handle(email, password)
     .then((result)=>{
+
       setloading(false)
       const user= result.users;
       setuser(user);
       goHome('/')
+      
 
     })
     .catch((error)=>{
-      console.log('this error from login page',error.name)
+      console.log('this error from login page',error.name);
+      seterror(error.message)
     })
 
     // google login fomrm

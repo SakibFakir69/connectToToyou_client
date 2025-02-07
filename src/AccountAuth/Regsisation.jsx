@@ -6,6 +6,10 @@ import registationAnimation from "../../public/registation.json";
 import usePublicHook, { useaxiosPublic } from "../Api/usePublicHook";
 import { ToastContainer, toast } from 'react-toastify';
 
+const Imgbb_api_key = import.meta.env.VITE_YOUR_CLIENT_API_KEY;
+
+const upload_img = `https://api.imgbb.com/1/upload?key=${Imgbb_api_key}`
+
 
 function Regsisation() {
   const useaxiosPublic = usePublicHook();
@@ -33,13 +37,20 @@ function Regsisation() {
           setloading(false);
           goHome("/");
 
+          const users_google={
+            Name: user.displayName,  // ✅ Get user name
+            Email: user.email,       // ✅ Get user email
+            photoURL: user.photoURL
+          }
+
           useaxiosPublic
-            .post("/user-registation")
+            .post("/user-registation",users_google)
             .then((result) => {
-              console.log("done");
+              toast.success("Registation Done")
             })
             .catch((error) => {
               console.log(error.code);
+              toast.error(error.message)
             });
         })
         .catch((error) => {
@@ -53,7 +64,7 @@ function Regsisation() {
 
 
 
-  const handleRegButtonSubmit = (event) => {
+  const handleRegButtonSubmit =async (event) => {
 
 
     event.preventDefault();
@@ -62,6 +73,20 @@ function Regsisation() {
       const data = new FormData(event.target);
       const data_info = Object.fromEntries(data);
       const { name, email, password, repeat_password } = data_info;
+
+
+      const img = new FormData();
+      img.append("image",data.get("image"))
+
+      const res = await useaxiosPublic.post(upload_img,img,{
+        headers:{
+          'Content-Type': 'multipart/form-data'
+        }
+
+      })
+      console.log(res.data?.data?.
+        display_url,"s");
+      console.log(img);
 
       // validation 
       const ValidateName = (name)=>{
@@ -85,41 +110,38 @@ function Regsisation() {
         return;
 
       }
+  
 
-      const passwordvalidation = (password)=>{
-        if(password.length<=8)
-        {
-          return "Your password must be 8 length"
+      const validatePassword = (password, repeat_password) => {
+        if (!password) {
+          return "Enter your password";
         }
-        if(!password){
-          return "Enter your password"
+        if (password.length < 8) {
+          return "Your password must be at least 8 characters long";
         }
-        if(!/a-z/.test(password)){
-          return "Your password must be one lowercase letter"
+        if (!/[a-z]/.test(password)) {
+          return "Your password must contain at least one lowercase letter";
         }
-        if(!/A-Z/.test(password))
-        {
-          return "Your password must be one Uppercase"
+        if (!/[A-Z]/.test(password)) {
+          return "Your password must contain at least one uppercase letter";
         }
-        if(!/0-9/.test(password))
-        {
-          return "Your password must be 1 number"
+        if (!/[0-9]/.test(password)) {
+          return "Your password must contain at least one number";
         }
-
-      }
-
-      const passVlidtino = passwordvalidation(password);
-      if(passVlidtino)
-      {
-        seterror(passVlidtino);
-        return ;
-      }
-      if(password===repeat_password)
-      {
-        seterror("Password not match");
+        if (password !== repeat_password) {
+          return "Passwords do not match";
+        }
+      
+        return null; // No errors
+      };
+      
+      // Usage:
+      const passwordError = validatePassword(password, repeat_password);
+      if (passwordError) {
+        seterror(passwordError);
         return;
       }
-
+      
       
 
       
@@ -132,6 +154,8 @@ function Regsisation() {
         Email: email,
         Password: password,
         Repeat_password: repeat_password,
+        Image:res.data?.data?.
+        display_url
       };
 
       userReg_Create_email_Password(email, password)
@@ -146,11 +170,12 @@ function Regsisation() {
             .then((result) => {
               console.log(RegUsser, "info");
               if (result.status == 200) {
-                alert("done");
+                toast.success("Registation Done")
               }
             })
             .catch((error) => {
               console.log(error.message);
+              toast.error(error.message);
             });
         })
         .catch((error) => {
@@ -216,6 +241,14 @@ function Regsisation() {
                 Email address
               </label>
             </div>
+
+            <div className="mb-4 text-white">
+              <p>Enter your photo</p>
+
+              <input type="file" name="image" placeholder="Enter your photo" className="py-3 text-center"/>
+            </div>
+
+
             <div class="relative z-0 w-full mb-5 group">
               <input
                 type="password"
