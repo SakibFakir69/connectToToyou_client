@@ -3,43 +3,85 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route, createBrowserRouter, RouterProvider } from "react-router";
 import MainLayouts from "./Layout/MainLayouts.jsx";
 import AuthLayout from "./Layout/AuthLayout.jsx";
 import Login from "./AccountAuth/Login.jsx";
 import Regsisation from "./AccountAuth/Regsisation.jsx";
 import AuthContext from "./Context/AuthContext.jsx";
+import HomeLayouts from "./Layout/HomeLayouts.jsx";
+import Post from "./components/Post.jsx";
+import NewPost from "./components/NewPost.jsx";
+import CreatePost from "./components/CreatePost.jsx";
+import AllUsers from "./components/AllUsers.jsx";
+import Notifaction from "./components/Notifaction.jsx";
+
+
+const route = createBrowserRouter([
+
+  {
+    path:'/',
+    element : <MainLayouts/>,
+    children:[
+      {
+        path:'/',
+        element:<HomeLayouts/>
+
+      },{
+        path:'/post',
+        element:<Post/>
+      },
+      {
+        path:'/new-post',
+        element:<NewPost/>,
+      },
+      {
+        path:'/create-post',
+        element: <CreatePost/>
+      },
+      {
+        path:'/all-users',
+        element:<AllUsers/>
+      },
+      {
+        path:'/notification',
+        element:<Notifaction/>
+      }
+    ]
+  },
+  {
+    path:'account',
+    element:<AuthLayout/>,
+    children:[
+      {
+        path:'/account/login',
+        element:<Login/>
+      },
+      {
+        path:'/account/regisation',
+        element:<Regsisation/>
+      }
+    ]
+  }
+
+
+])
+
+
+
+
+
+
+
+
+
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
    <AuthContext>
-   <BrowserRouter>
-      {/* main */}
-      <Routes>
-        <Route index element={<MainLayouts />} />
+    <RouterProvider router={route}/>
 
-        {/* home here */}
-
-
-
-
-
-        
-
-        {/* authlayout */}
-        <Route path="account">
-          {/* this is parent */}
-          <Route index element={<AuthLayout />} />
-          {/* this is child */}
-
-          <Route path="/account/login" element={<Login />} />
-          <Route path="/account/registation" element={<Regsisation />} />
-        </Route>
-
-
-
-      </Routes>
-    </BrowserRouter>
+ 
    </AuthContext>
 
   </StrictMode>

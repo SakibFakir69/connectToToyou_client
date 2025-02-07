@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router";
-import AuthMangedHook from "../hook/AuthMangedHook";
-
+import useAuthMangedHook from "../hook/useAuthMangedHook";
 import Lottie from "react-lottie";
 import registationAnimation from "../../public/registation.json";
+import usePublicHook, { useaxiosPublic } from "../Api/usePublicHook";
+import { ToastContainer, toast } from 'react-toastify';
+
 
 function Regsisation() {
+  const useaxiosPublic = usePublicHook();
+
+  const goHome = useNavigate();
+
   const Options = {
     loop: true,
     autoplay: true,
@@ -13,7 +19,8 @@ function Regsisation() {
   };
 
   const { userReg_Create_email_Password, userGoogle_login_handle, setloading } =
-    AuthMangedHook();
+    useAuthMangedHook();
+
   const [error, seterror] = useState("");
   const navigate = useNavigate();
 
@@ -24,6 +31,16 @@ function Regsisation() {
         .then((result) => {
           const user = result.user;
           setloading(false);
+          goHome("/");
+
+          useaxiosPublic
+            .post("/user-registation")
+            .then((result) => {
+              console.log("done");
+            })
+            .catch((error) => {
+              console.log(error.code);
+            });
         })
         .catch((error) => {
           console.log(`This error from Google reg page: ${error.code}`);
@@ -34,7 +51,11 @@ function Regsisation() {
     console.log("google");
   };
 
+
+
   const handleRegButtonSubmit = (event) => {
+
+
     event.preventDefault();
     setloading(true);
     try {
@@ -42,12 +63,95 @@ function Regsisation() {
       const data_info = Object.fromEntries(data);
       const { name, email, password, repeat_password } = data_info;
 
+      // validation 
+      const ValidateName = (name)=>{
+        if(!name)
+        {
+        
+          return "Enter your name"
+
+        }else if(name.length<4)
+        {
+      
+          return "Your name length must be 4 length";
+
+
+        }
+      }
+      const nameCheck = ValidateName(name);
+      if(nameCheck)
+      {
+        seterror(nameCheck);
+        return;
+
+      }
+
+      const passwordvalidation = (password)=>{
+        if(password.length<=8)
+        {
+          return "Your password must be 8 length"
+        }
+        if(!password){
+          return "Enter your password"
+        }
+        if(!/a-z/.test(password)){
+          return "Your password must be one lowercase letter"
+        }
+        if(!/A-Z/.test(password))
+        {
+          return "Your password must be one Uppercase"
+        }
+        if(!/0-9/.test(password))
+        {
+          return "Your password must be 1 number"
+        }
+
+      }
+
+      const passVlidtino = passwordvalidation(password);
+      if(passVlidtino)
+      {
+        seterror(passVlidtino);
+        return ;
+      }
+      if(password===repeat_password)
+      {
+        seterror("Password not match");
+        return;
+      }
+
+      
+
+      
+    
+
+  
+
+      const RegUsser = {
+        Name: name,
+        Email: email,
+        Password: password,
+        Repeat_password: repeat_password,
+      };
+
       userReg_Create_email_Password(email, password)
         .then((result) => {
           const user = result.user;
           setloading(false);
           alert("Registration successful!");
-          navigate("/dashboard");
+          goHome("/");
+
+          useaxiosPublic
+            .post("/user-registation", RegUsser)
+            .then((result) => {
+              console.log(RegUsser, "info");
+              if (result.status == 200) {
+                alert("done");
+              }
+            })
+            .catch((error) => {
+              console.log(error.message);
+            });
         })
         .catch((error) => {
           console.log(`Error on registration page: ${error.code}`);
@@ -137,6 +241,9 @@ function Regsisation() {
               <label class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                 Confirm password
               </label>
+
+              {error && <span className="text-red-500">{error}</span>}
+        
             </div>
 
             <button
@@ -147,13 +254,12 @@ function Regsisation() {
             </button>
 
             {/* google login */}
-           
           </form>
           <section>
-              <div className="divider divider-warning">
-                <span className="text-white">or</span>
-              </div>
-            </section>
+            <div className="divider divider-warning">
+              <span className="text-white">or</span>
+            </div>
+          </section>
 
           <section className="flex justify-center flex-col border-white -mt-4 ">
             <button

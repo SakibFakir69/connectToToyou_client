@@ -3,9 +3,9 @@
 
 
 
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import { Auth } from '../firebase/config';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { GoogleAuthProvider } from 'firebase/auth';
 
 // now create context then use
@@ -46,11 +46,33 @@ function AuthContext({children}) {
         return signInWithPopup(Auth,Provider);
     }
 
+    // logout 
+
+    const handel_log_out = ()=>{
+        return signOut(Auth);
+    }
+
+    useEffect(()=>{
+
+        const unscribe = onAuthStateChanged(Auth, (currentUser)=>{
+            if(currentUser)
+            {
+                setloading(true);
+                setuser(currentUser);
+            }
+            setloading(false);
+
+        })
+
+        return unscribe;
+
+    },[])
+
 
 
     const authInfo = {
         user , loading , setloading, setuser,userReg_Create_email_Password,userGoogle_login_handle
-        ,LoginWith_email_ans_password_handle,Login_with_Google_handle
+        ,LoginWith_email_ans_password_handle,Login_with_Google_handle,handel_log_out
     }
 
 

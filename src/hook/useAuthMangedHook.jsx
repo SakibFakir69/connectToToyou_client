@@ -4,7 +4,7 @@
 import React, { useContext } from 'react'
 import { MYContext } from '../Context/AuthContext'
 
-function AuthMangedHook() {
+function useAuthMangedHook() {
 
     const auth = useContext(MYContext);
 
@@ -14,4 +14,4 @@ function AuthMangedHook() {
   return auth;
 }
 
-export default AuthMangedHook
+export default useAuthMangedHook

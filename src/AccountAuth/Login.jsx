@@ -4,14 +4,18 @@ import "./account.css";
 
 import LottieLoginAnimation from "../../public/Animation - 1738435419733.json";
 import Lottie from "react-lottie";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import useAuthMangedHook from "../hook/useAuthMangedHook";
 
 function Login() {
   // validation 
   /// server send 
   // implement alert 
 
-  const {LoginWith_email_ans_password_handle,Login_with_Google_handle , setloading , setuser } = AuthMangedHook();
+  const {LoginWith_email_ans_password_handle,Login_with_Google_handle , setloading , setuser } = useAuthMangedHook();
+
+  const goHome = useNavigate();
+
 
 
 
@@ -23,7 +27,7 @@ function Login() {
 
   //   handle form
 
-  const handleLoginFormSubmit= async (event)=>{
+  const handleLoginFormSubmit=  (event)=>{
 
     event.preventDefault();
     const form_info= new FormData(event.target);
@@ -36,6 +40,9 @@ function Login() {
     LoginWith_email_ans_password_handle(email, password)
     .then((result)=>{
       setloading(false)
+      const user= result.users;
+      setuser(user);
+      goHome('/')
 
     })
     .catch((error)=>{
@@ -45,10 +52,14 @@ function Login() {
     // google login fomrm
 
     const Login_in_with_google_handle = () =>{
+
       setloading(true);
       Login_with_Google_handle()
       .then((result)=>{
         setloading(false);
+        const user= result.users;
+      setuser(user);
+      goHome('/')
 
 
       })
@@ -121,13 +132,20 @@ function Login() {
               </button>
             </div>
           </form>
+
           <div className="divider divider-success">
             <span>or</span>
           </div>
           <div className="">
-            <a
-              href="#"
-              class="flex items-center justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
+            <button
+    
+            onClick={Login_with_Google_handle}
+              class="flex items-center 
+
+              mx-auto
+              
+              
+              justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
             >
               <svg class="w-6 h-6 mx-2" viewBox="0 0 40 40">
                 <path
@@ -149,13 +167,13 @@ function Login() {
               </svg>
 
               <span class="mx-2">Sign in with Google</span>
-            </a>
+            </button>
 
             {/* no account */}
             <div className="text-center mt-4">
               <p>
                 I have not account{" "}
-                <Link to={"/account/registation"} className="text-green-300">
+                <Link to={"/account/regisation"} className="text-green-300">
                   Register Now!
                 </Link>
               </p>

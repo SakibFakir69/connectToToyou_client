@@ -1,27 +1,51 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
+import useAuthMangedHook from "../hook/useAuthMangedHook";
 
 function NavbarPage() {
-
-    const links=(
-        <>
-        <li><NavLink to={'/'}>Home</NavLink></li>
-        <li><NavLink to={'/'}>Post</NavLink></li>
-        <li><NavLink to={'/'}>New post</NavLink></li>
-       
-        <li><NavLink to={'/'}>Create post</NavLink></li>
-        <li><NavLink to={'/'}>All Users</NavLink></li>
-        <li><NavLink to={'/'}>Notification</NavLink></li>
+  const { setloading, setuser ,handel_log_out,user} = useAuthMangedHook();
+  console.log(user);
 
 
-        </>
+  const hadel_log_out_button = ()=>{
+    setloading(true);
+    handel_log_out()
+    .then((result)=>{
+      setloading(false)
+      setuser(null);
+
+    })
+    .catch((error)=>{
+      console.log(error.name)
+    })
+  }
+
+  
 
 
-    )
+  const links = (
+    <>
+      <li>
+        <NavLink to={"/"}>Home</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/post"}>Post</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/new-post"}>New post</NavLink>
+      </li>
 
-    
-
-
+      <li>
+        <NavLink to={"/create-post"}>Create post</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/all-users"}>All Users</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/notification"}>Notification</NavLink>
+      </li>
+    </>
+  );
 
   return (
     <div>
@@ -51,17 +75,29 @@ function NavbarPage() {
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a className="btn btn-ghost text-xl">ConenctToyou</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-           {links}
-          </ul>
+          <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-         
-          <Link to={'/account/login'} className="btn">Log in </Link>
 
+          {
+            user ? (<div>
+              <button className="btn" onClick={hadel_log_out_button}>Log out</button>
+
+
+            </div>) :
+            
+            (<div>
+               <Link to={"/account/login"} className="btn">
+            Log in{" "}
+          </Link>
+
+            </div>)
+          }
+
+         
 
         </div>
       </div>
