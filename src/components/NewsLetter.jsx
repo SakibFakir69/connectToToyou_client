@@ -15,10 +15,12 @@ function NewsLetter() {
             {/* email */}
             <div className='flex gap-2'>
                 <input type='email' required className='px-32  py-3 rounded'/>
-                <button className='px-10 py-3 border bg-black text-white'>Send</button>
+                <button className='px-10 py-3 border bg-black text-white md:text-xl'>Send</button>
             </div>
 
         </section>
+        {/* test */}
+
 
 
     </div>
