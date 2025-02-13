@@ -7,6 +7,7 @@ import TopFollwer from '../homecomponents/TopFollwer'
 import PopularHastag from '../Homecomponents/PopularHastag'
 import NewAccount from '../Homecomponents/NewAccount'
 import AboutNow from '../Homecomponents/AboutNow'
+import NewsLetter from '../components/NewsLetter'
 
 
 function HomeLayouts() {
@@ -18,6 +19,7 @@ function HomeLayouts() {
        <TopFollwer/>
        <PopularHastag/>
        <NewAccount/>
+       <NewsLetter/>
        <AboutNow/>
 
        {/* add about section why you here short message but you know all info */}
