@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import useAuthMangedHook from "../hook/useAuthMangedHook";
 import { useaxiosPublic } from "../Api/usePublicHook";
 import { ToastContainer,toast } from "react-toastify";
+
+
+
+
+
 function CreatePost() {
 
   /// trending post
@@ -30,9 +35,14 @@ function CreatePost() {
   /// add details page add like here
   // but also show first page 
 
+  /// max post 100 length word 
+
   const createPost_button = (event) => {
+
+
     try {
       event.preventDefault();
+
       const data = new FormData(event.target);
       const data_form = Object.fromEntries(data);
       console.log(data_form);
@@ -87,10 +97,13 @@ function CreatePost() {
     }
   };
 
-  return (
-    <div>
-      <section class="bg-white dark:bg-gray-900">
+  return ( 
+    <div className="mt-16">
+
+      <section class=" bg-color text-black">
+
         <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+
           <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
             Create Your post
           </h2>

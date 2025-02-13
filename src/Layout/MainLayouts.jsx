@@ -13,7 +13,11 @@ function MainLayouts() {
             <NavbarPage/>
         </header>
         {/* outlet */}
+        
+        
+        <section className='mt-16'>
         <Outlet/>
+        </section>
         
 
 

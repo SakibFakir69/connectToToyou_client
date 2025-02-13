@@ -17,6 +17,21 @@ import AllUsers from "./components/AllUsers.jsx";
 import Notifaction from "./components/Notifaction.jsx";
 
 
+
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import ProfileLayout from "./Layout/ProfileLayout.jsx";
+
+const queryClient = new QueryClient();
+
+
+
+
 const route = createBrowserRouter([
 
   {
@@ -62,6 +77,16 @@ const route = createBrowserRouter([
         element:<Regsisation/>
       }
     ]
+  },
+
+  // profile 
+
+  {
+    path:'profilepage',
+    element : <ProfileLayout/>,
+    children:[
+
+    ]
   }
 
 
@@ -79,10 +104,18 @@ const route = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
    <AuthContext>
+    <QueryClientProvider client={queryClient}>
     <RouterProvider router={route}/>
+    </QueryClientProvider>
+
+ 
 
  
    </AuthContext>
 
   </StrictMode>
 );
+
+
+
+

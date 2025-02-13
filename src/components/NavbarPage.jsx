@@ -48,9 +48,11 @@ function NavbarPage() {
   );
 
   return (
-    <div>
-      <div className="navbar bg-base-100 border ">
-        <div className="navbar-start">
+    <div className="text-stone-200">
+      <div className="navbar border fixed top-0 z-50  bg-violet-600/90 backdrop-blur-md ">
+
+        <div className="navbar-start ">
+
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
@@ -70,20 +72,26 @@ function NavbarPage() {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm bg-black dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow "
             >
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">ConenctToyou</a>
+          <Link to={'/'} className="btn-ghost text-2xl font-bold">ConenctToyou</Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{links}</ul>
+        <div className="navbar-center hidden lg:flex ">
+          <ul className="menu menu-horizontal px-0">{links}</ul>
         </div>
         <div className="navbar-end">
 
           {
-            user ? (<div>
+            user ? (<div className="flex gap-4 justify-center items-center">
+
+              <Link to={'profilepage'}>
+                <p className="h-10 w-10 rounded-full bg-amber-50 border"></p>
+                
+              </Link>
+
               <button className="btn" onClick={hadel_log_out_button}>Log out</button>
 
 
