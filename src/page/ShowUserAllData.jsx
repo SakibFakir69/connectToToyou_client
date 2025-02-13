@@ -10,7 +10,7 @@ function ShowUserAllData({ data }) {
   const { Image, Name, Email } = data;
 
   return (
-    <div className="md:py-10  flex   border bg-white m-2 md:w-1/2 md:justify-center md:items-center md:mx-auto">
+    <div className="md:py-10  flex   border bg-white m-2 md:w-1/2 md:justify-center md:items-center md:mx-auto ">
         
       <section className="border w-full flex w-/10/11 p-2 gap-6 ml-8">
 
