@@ -1,52 +1,49 @@
 import React, { useState } from "react";
 import useAuthMangedHook from "../hook/useAuthMangedHook";
-import { useaxiosPublic } from "../Api/usePublicHook";
+import usePublicHook, { useaxiosPublic } from "../Api/usePublicHook";
 import { ToastContainer,toast } from "react-toastify";
 
 
 
+const img_bb_api_key = import.meta.env.VITE_YOUR_CLIENT_API_KEY;
 
+const uplog_img = `https://api.imgbb.com/1/upload?key=${img_bb_api_key}`
 
 function CreatePost() {
 
-  /// trending post
-  // show top liked post 
-  
-
-
-  // title
-  // photo
-  // name
-  // message
-  // time
-  // post email
-  // add like Option int 0
-
-
-  // serach name
-  // serach category
-
-  // use name , email
   const { user, loading } = useAuthMangedHook();
-  // my post find by email
-
-  // catch error
+ 
   const [error  , seterror] = useState('');
-  /// add details page add like here
-  // but also show first page 
 
-  /// max post 100 length word 
-
-  const createPost_button = (event) => {
+  const createPost_button = async(event) => {
 
 
     try {
       event.preventDefault();
 
+      const useaxiosPublic = usePublicHook();
+
       const data = new FormData(event.target);
       const data_form = Object.fromEntries(data);
       console.log(data_form);
       const { name, Title, Message, Category } = data_form;
+
+
+      const img = new FormData();
+      img.append("image",data.get("image"));
+
+   
+      const res=   await useaxiosPublic.post(uplog_img,img,{
+        headers:{
+          'Content-Type': 'multipart/form-data'
+        }
+
+      })
+
+      console.log(res.data?.data.
+        display_url
+        );
+
 
       if( name.length<=4 )
       {
@@ -72,6 +69,7 @@ function CreatePost() {
         Category: Category,
         Email:user?.email,
         Like: 0,
+        
       };
       console.log(postUser);
 
@@ -81,6 +79,8 @@ function CreatePost() {
           if(result.status==200)
           {
             toast.success("Your post created")
+      
+            seterror('')
             
 
           }else{
@@ -104,7 +104,7 @@ function CreatePost() {
 
         <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
 
-          <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
+          <h2 class="mb-4 text-xl font-semibold text-black">
             Create Your post
           </h2>
           <ToastContainer/>
@@ -114,7 +114,7 @@ function CreatePost() {
               <div class="sm:col-span-2">
                 <label
                   for="name"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  class="block mb-2 text-sm font-medium"
                 >
                   Post Name
                 </label>
@@ -131,7 +131,7 @@ function CreatePost() {
               <div>
                 <label
                   for="category"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  class="block mb-2 text-sm font-medium "
                 >
                   Title
                 </label>
@@ -148,7 +148,7 @@ function CreatePost() {
               <div>
                 <label
                   for="category"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  class="block mb-2 text-sm font-medium"
                 >
                   Category
                 </label>
@@ -179,9 +179,9 @@ function CreatePost() {
               <div class="sm:col-span-2">
                 <label
                   for="description"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  class="block mb-2 text-sm font-medium "
                 >
-                  Description
+                  Message
                 </label>
                 <textarea
                   id="description"
@@ -197,7 +197,13 @@ function CreatePost() {
             <div className="w-full  border-white flex justify-center">
               <button
                 type="submit"
-                className="btn mt-6 flex justify-center items-center px-12 py-4 bg-green-600 border-white/10 shadow hover:shadow-2xl hover:shadow-amber-50"
+                className="btn px-10 mt-5 py-2 bg-blue-500 text-white shadow-2xl
+
+                hover:shadow-2xs
+                hover:shadow-indigo-500
+                
+                
+                "
               >
                 Submit
               </button>

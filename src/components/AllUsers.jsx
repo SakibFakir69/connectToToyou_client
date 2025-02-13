@@ -21,7 +21,11 @@ function AllUsers() {
   const [currentPage, setcurrentpage] = useState(1);
   const limit = 8;
 
-  const { data: users_Data = [], refetch } = useQuery({
+  const {
+    isLoading,
+    data: users_Data = [],
+    refetch,
+  } = useQuery({
     queryKey: ["data", currentPage, search],
     queryFn: async () => {
       const res = await useaxiosPublic.get(
@@ -74,7 +78,7 @@ function AllUsers() {
     <div className="bg-color h-screen">
       <section className="">
         <form
-          class="w-full mx-auto py-6 backdrop-blur-xl bg-transparent fixed"
+          class="w-full mx-auto py-6 backdrop-blur-xl bg-transparent fixed md:p-2 p-4"
           onChange={(e) => setsearch(e.target.value)}
         >
           <label
@@ -101,6 +105,7 @@ function AllUsers() {
                 />
               </svg>
             </div>
+
             <input
               type="search"
               id="default-search"
@@ -113,46 +118,68 @@ function AllUsers() {
       </section>
 
       <section className="py-24 flex justify-center flex-col w-full ">
-        {User_Data_info.map((item, key) => (
-          <div
-            key={key}
-            className="border 
+        {isLoading ? (
+          <div>
+            <div>
+              <p>loading...</p>
+            </div>
+          </div>
+        ) : (
+          <div className=" ">
+            {users_Data.length === 0 ? (
+              <div>
+                <p>data not founede</p>
+              </div>
+            ) : (
+              <div className="md:p-2 p-4">
+                {User_Data_info.map((item, key) => (
+                  <div
+                    key={key}
+                    className="border 
            p-2 md:w-1/2 flex items-center justify-center mx-auto mt-4
 
            border-stone-300/50
+          
 
            rounded-md
 
            
-           bg-white "
-          >
-            <div className="flex  h-24 md:h-28 gap-10 ml-10 items-center w-full">
-
-              <div className=" flex-1 h-24 w-24 ">
-                {/* img */}
-                <img
-                  src={item.Image}
-                  className="   h-20 
+           bg-white"
+                  >
+                    <div className="flex  h-24 md:h-28 gap-10 ml-10 items-center w-10/11 ">
+                      <div className=" flex-1 h-24 w-24 ">
+                        {/* img */}
+                        <img
+                          src={item.Image}
+                          className="   h-20 
                   border  rounded-full border-stone-950/10 md:ml-4 "
-                />
-              </div>
+                        />
+                      </div>
 
-              <div className="md:mr-4 border flex-1">
-                {/* info */}
-                <p>{item.Name}</p>
-                <p>{item.Email}</p>
-                <div className="flex gap-5">
-                  <button>Follwer</button>
-                  <button>post</button>
-                </div>
+                      <div className="md:mr-4 flex-1">
+                        {/* info */}
+                        <p>{item.Name}</p>
+                        <p>{item.Email}</p>
+                        <div className="flex gap-5">
+                          <button>Follwer</button>
+                          <button>post</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            </div>
+            )}
           </div>
-        ))}
+        )}
       </section>
 
       <div className=" w-full flex justify-between p-4">
-        <button className="btn px-8" onClick={perviouseButton} disabled={currentPage===1}>
+        <button
+          className="btn px-8"
+          onClick={perviouseButton}
+          disabled={currentPage === 1}
+        >
           prev
         </button>
 
