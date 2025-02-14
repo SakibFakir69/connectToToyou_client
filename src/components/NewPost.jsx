@@ -1,9 +1,14 @@
 
 
 
-import React from 'react'
-import UseNewPostData from '../hook/UseNewPostData'
-import ShowNewpostData from '../page/ShowNewpostData';
+import React, { useState } from 'react'
+
+
+
+
+import { useQuery } from '@tanstack/react-query';
+import usePublicHook from '../Api/usePublicHook';
+import UseNewpostHook from '../hook/UseNewpostHook';
 
 
 
@@ -11,20 +16,13 @@ import ShowNewpostData from '../page/ShowNewpostData';
 
 function NewPost() {
 
-  const {refetch,isLoading,error,NewPost} = UseNewPostData();
 
-  // complete new post and post 
-  
+  const {isLoading,error,newPostData}= UseNewpostHook();
 
+ 
 
-  if (isLoading) {
-    return (
-      <div className="w-full border flex justify-center mt-20 ">
+ 
 
-        <span className="loading loading-bars loading-md text-center flex justify-center "></span>
-      </div>
-    );
-  }
 
 
 
@@ -32,12 +30,22 @@ function NewPost() {
 
 
   return (
-    <div className='grid md:grid-cols-3 gap-4 bg-color p-2 grid-cols-1 mt-16'>
-
+    <div>
       {
-        NewPost.map((item,key)=> <ShowNewpostData data={item} key={key}/>)
+        newPostData.length
       }
 
+
+      <section>
+
+
+      </section>
+
+
+
+
+
+    
 
 
     </div>
