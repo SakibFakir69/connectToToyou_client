@@ -12,7 +12,7 @@ function ShowNewpostData({ data }) {
   // show latest 20 new added data
   // add pagination
 
-  const { Name,Like,Email,   Category,  Message,Title,PostName,Date,Image,_id} = data ;
+  const { Name,Like,Email,   Category,  Message,Title,PostName,Date,Image,_id,FollowPost} = data ;
   // details page show user name age email 
 
   // user follow 
@@ -96,7 +96,7 @@ function ShowNewpostData({ data }) {
 
               <div className="flex items-center gap-[6px] text-gray-400 cursor-not-allowed hover:text-blue-700">
                 <FaRegBookmark />
-                post follow : 5
+                post follow : {FollowPost}
               </div>
           
             </div>

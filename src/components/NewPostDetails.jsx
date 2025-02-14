@@ -29,31 +29,49 @@ function NewPostDetails() {
     Message,
     Title,
     PostName,
-  } = deatilsData[0];
+  } = deatilsData[0] || {};
 
   // Like
 
   // usemutation
   //new-details-post/:id
 
+  const likehandelButton = async () => {
+    const res = await useaxiosPublic.put(`new-details-post/${id}`);
 
-  const likehandelButton = async  () =>{
+    if (res.status === 200) {
+      alert("liked");
+    }
 
-    const res = await useaxiosPublic.put(`new-details-post/${id}`)
+    console.log("liked button cliked");
+  };
+
+  //unliked button
+
+  const unlikedButtoon = async () =>{
+    const res = await useaxiosPublic.put(`new-details-post/${id}`);
 
     if(res.status===200)
     {
-        alert("liked");
+        alert("liked decremenr")
     }
-
-    console.log("liked button cliked")
-
-
-  } 
+    console.log("liked decrement cliked")
 
 
+    console.log("unliked button cliked")
+  }
+
+  const followpostButton =async () =>{
 
 
+    const res = await useaxiosPublic.put(`/new-details-post-follow/${id}`)
+    if(res.status===200)
+    {
+        alert("follow post")
+    }
+    console.log("follow post clicked");
+
+  }
 
   if (!deatilsData) {
     return <p>laoding..</p>;
@@ -84,9 +102,11 @@ function NewPostDetails() {
 
             <div className="border flex gap-10 px-5">
               {/* use  this and make post req */}
-              <button onClick={likehandelButton} className="btn btn-warning">Like</button>
-              <button className="btn btn-primary">Unlike</button>
-              <button className="btn btn-secondary">Follow post</button>
+              <button onClick={likehandelButton} className="btn btn-warning">
+                Like
+              </button>
+              <button onClick={unlikedButtoon} className="btn btn-primary">Unlike</button>
+              <button onClick={followpostButton} className="btn btn-secondary">Follow post</button>
             </div>
           </div>
         </section>
