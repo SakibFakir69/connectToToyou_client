@@ -19,8 +19,6 @@ function NewsLetter() {
             </div>
 
         </section>
-        {/* test */}
-        <p>s</p>
 
 
 
