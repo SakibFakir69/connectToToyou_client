@@ -13,6 +13,8 @@ import NewsLetter from '../components/NewsLetter'
 function HomeLayouts() {
   return (
     <div className='mt-16 bg-color'>
+
+      {/* add animtion home layouts */}
         
        <TrendingPost/>
        

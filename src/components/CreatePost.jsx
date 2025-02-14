@@ -1,23 +1,18 @@
 import React, { useState } from "react";
 import useAuthMangedHook from "../hook/useAuthMangedHook";
 import usePublicHook, { useaxiosPublic } from "../Api/usePublicHook";
-import { ToastContainer,toast } from "react-toastify";
-
-
+import { ToastContainer, toast } from "react-toastify";
 
 const img_bb_api_key = import.meta.env.VITE_YOUR_CLIENT_API_KEY;
 
-const uplog_img = `https://api.imgbb.com/1/upload?key=${img_bb_api_key}`
+const uplog_img = `https://api.imgbb.com/1/upload?key=${img_bb_api_key}`;
 
 function CreatePost() {
-
   const { user, loading } = useAuthMangedHook();
- 
-  const [error  , seterror] = useState('');
 
-  const createPost_button = async(event) => {
+  const [error, seterror] = useState("");
 
-
+  const createPost_button = async (event) => {
     try {
       event.preventDefault();
 
@@ -28,94 +23,89 @@ function CreatePost() {
       console.log(data_form);
       const { name, Title, Message, Category } = data_form;
 
-
       const img = new FormData();
-      img.append("image",data.get("image"));
+      img.append("image", data.get("image"));
 
-   
-      const res=   await useaxiosPublic.post(uplog_img,img,{
-        headers:{
-          'Content-Type': 'multipart/form-data'
-        }
+      const res = await useaxiosPublic.post(uplog_img, img, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
-      })
+      console.log(res.data?.data.display_url);
 
-      console.log(res.data?.data.
-        display_url
-        );
-
-
-      if( name.length<=4 )
-      {
+      if (name.length <= 4) {
         seterror("Post name must be 5 length");
         return;
       }
-      if( (Title.length<=8) )
-      {
+      if (Title.length <= 8) {
         seterror("Title name must be 8 length upper");
         return;
       }
-      if(  Message.length<=20)
-      {
+      if (Message.length <= 20) {
         seterror("Message must be 20 length upper");
         return;
       }
 
+      // Get the current date in DD-MM-YYYY format
+      const currentDate = new Date();
+      const day = String(currentDate.getDate()).padStart(2, "0"); // Ensure two digits
+      const month = String(currentDate.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
+      const year = currentDate.getFullYear();
+
+      const postDate = `${day}-${month}-${year}`; // Format: DD-MM-YYYY
 
       const postUser = {
         PostName: name,
         Title: Title,
         Message: Message,
         Category: Category,
-        Email:user?.email,
+        Email: user?.email,
         Like: 0,
-        
+        Date: postDate,
+        Name: user?.displayName,
+        Image: res.data?.data.display_url,
+        UnLike:0,
+        FollowPost:0,
       };
+      
       console.log(postUser);
+
 
       useaxiosPublic
         .post("/create-post", postUser)
         .then((result) => {
-          if(result.status==200)
-          {
-            toast.success("Your post created")
-      
-            seterror('')
-            
+          if (result.status == 200) {
+            toast.success("Your post created");
 
-          }else{
-            toast.error("your post created failed",)
+            seterror("");
+
+            event.target.reset();
+          } else {
+            toast.error("your post created failed");
           }
-
         })
         .catch((error) => {
-          console.log(error.message)
+          console.log(error.message);
         });
-
     } catch (error) {
       console.log(error);
     }
   };
 
-  return ( 
+  return (
     <div className="mt-16">
-
       <section class=" bg-color text-black">
-
         <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-
           <h2 class="mb-4 text-xl font-semibold text-black">
             Create Your post
           </h2>
-          <ToastContainer/>
+          <ToastContainer />
 
           <form onSubmit={createPost_button}>
             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
               <div class="sm:col-span-2">
-                <label
-                  for="name"
-                  class="block mb-2 text-sm font-medium"
-                >
+                <label for="name" class="block mb-2 text-sm font-medium">
                   Post Name
                 </label>
                 <input
@@ -129,10 +119,7 @@ function CreatePost() {
               </div>
 
               <div>
-                <label
-                  for="category"
-                  class="block mb-2 text-sm font-medium "
-                >
+                <label for="category" class="block mb-2 text-sm font-medium ">
                   Title
                 </label>
                 <input
@@ -146,10 +133,7 @@ function CreatePost() {
               </div>
 
               <div>
-                <label
-                  for="category"
-                  class="block mb-2 text-sm font-medium"
-                >
+                <label for="category" class="block mb-2 text-sm font-medium">
                   Category
                 </label>
                 <select

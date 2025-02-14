@@ -5,31 +5,44 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
 import { FaArrowRight } from "react-icons/fa6";
 import { useState } from "react";
+import { Link } from "react-router";
 
 
 function ShowNewpostData({ data }) {
   // show latest 20 new added data
   // add pagination
 
-    const [openthreeDotMenu, setOpenThreeDotMenu] = useState(false);
+  const { Name,Like,Email,   Category,  Message,Title,PostName,Date,Image,_id} = data ;
+  // details page show user name age email 
+
+  // user follow 
+  // post follow 
+  // like and unlike 
+  // normal info
+
+  // get this id and use put opration
+
+  console.log(Image);
+
+  const [openthreeDotMenu, setOpenThreeDotMenu] = useState(false);
 
   return (
     <div className="border m-2 grid">
-
       <div className="w-full md:min-w-[60%] md:max-w-[90%] relative bg-white boxShadow rounded-xl flex-col sm:flex gap-[20px] p-4">
-        <div className="w-full sm:w-[23.5%]">
+        <div className="w-full md:h-[250px] h-[200px] border">
           <img
-            src="https://img.freepik.com/free-photo/portrait-young-bearded-man-looking-camera_23-2148187159.jpg?t=st=1722619967~exp=1722623567~hmac=c60da5db6ff09019a7669117874a5a90fd04fb132355f1558d5067773698dfaa&w=740"
+            src={Image}
             alt="image"
-            className="w-[100%] h-[100px] object-cover sm:rounded-full"
+            className=" object-cover  h-full"
           />
         </div>
 
         <div className="w-full mt-5 sm:mt-0">
           <div className="flex sm:items-center justify-between w-full">
             <div className="flex sm:flex-row flex-col sm:items-center sm:gap-[5px]">
-              <h1 className="text-[1.2rem] font-bold">Jerome Bell</h1>
-              <span className="text-gray-400"> • 2 week ago</span>
+              <h1 className="text-[1.2rem] font-bold">{PostName}</h1>
+
+              <span className="text-gray-400"> {Date}</span>
             </div>
 
             <div className="relative">
@@ -59,30 +72,38 @@ function ShowNewpostData({ data }) {
           </div>
 
           <p className="text-gray-600 mt-3 text-[0.9rem]">
-            Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
-            sint. Velit officia consequat duis enim velit mollit. Exercitation
-            veniam consequat sunt nostrud amet.
+            {Message}
           </p>
 
+          {/* here user can share there message */}
+          {/* make a pool like and like  */}
+
+
           <div className="flex  justify-between">
-            <div className="flex gap-5">
-              <div className="flex items-center gap-[6px] text-gray-400 cursor-pointer hover:text-blue-700">
+
+            <div className="flex gap-5 ">
+
+
+              <div className="cursor-not-allowed  flex items-center gap-[6px] text-gray-400 hover:text-blue-700">
                 <FaRegHeart />
-                22
+                {Like}
               </div>
-              <div className="flex items-center gap-[6px] text-gray-400 cursor-pointer hover:text-blue-700">
+
+              <div className="flex items-center gap-[6px] text-gray-400 cursor-not-allowed hover:text-blue-700">
                 <FaRegBookmark />
-                234
+                Unlike 2
               </div>
-              <div className="flex items-center gap-[6px] text-gray-400 cursor-pointer hover:text-blue-700">
-                <BiComment />
-                185
+
+              <div className="flex items-center gap-[6px] text-gray-400 cursor-not-allowed hover:text-blue-700">
+                <FaRegBookmark />
+                post follow : 5
               </div>
+          
             </div>
             <div>
-              <button className="btn flex items-center gap-2 hover:bg-stone-950 hover:text-white transition delay-100 hover:shadow-2xl hover:shadow-emerald-600">
+              <Link to={`/newpost-details/${_id}`} className="btn flex items-center gap-2 hover:bg-stone-950 hover:text-white transition delay-100 hover:shadow-2xl hover:shadow-emerald-600">
                 View Details <FaArrowRight />
-              </button>
+              </Link>
             </div>
           </div>
         </div>

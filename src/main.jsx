@@ -26,6 +26,8 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import ProfileLayout from "./Layout/ProfileLayout.jsx";
+import NewAccount from "./Homecomponents/NewAccount.jsx";
+import NewPostDetails from "./components/NewPostDetails.jsx";
 
 const queryClient = new QueryClient();
 
@@ -61,7 +63,15 @@ const route = createBrowserRouter([
       {
         path:'/notification',
         element:<Notifaction/>
+      },
+
+      // details page of new post 
+
+      {
+        path:'/newpost-details/:id',
+        element:<NewPostDetails/>
       }
+
     ]
   },
   {
