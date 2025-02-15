@@ -7,12 +7,15 @@ import { FaArrowRight } from "react-icons/fa6";
 import { useState } from "react";
 import { Link } from "react-router";
 
+import { HiMiniHandThumbUp } from "react-icons/hi2";
+import { HiMiniHandThumbDown } from "react-icons/hi2";
+import { TbFocus2 } from "react-icons/tb";
 
 function ShowNewpostData({ data }) {
   // show latest 20 new added data
   // add pagination
 
-  const { Name,Like,Email,   Category,  Message,Title,PostName,Date,Image,_id,FollowPost} = data ;
+  const { Name,Like,Email,   Category,  Message,Title,PostName,Date,Image,_id,FollowPost,UnLike} = data ;
   // details page show user name age email 
 
   // user follow 
@@ -27,13 +30,16 @@ function ShowNewpostData({ data }) {
   const [openthreeDotMenu, setOpenThreeDotMenu] = useState(false);
 
   return (
-    <div className="border m-2 grid">
-      <div className="w-full md:min-w-[60%] md:max-w-[90%] relative bg-white boxShadow rounded-xl flex-col sm:flex gap-[20px] p-4">
-        <div className="w-full md:h-[250px] h-[200px] border">
+    <div className="border m-2 grid bg-white rounded border-stone-500/20 shadow-xl hover:shadow-green-200 delay-150 hover:shadow-2xl">
+
+      <div className="w-full md:min-w-[50%] md:max-w-[80%] relative boxShadow rounded-xl flex-col sm:flex gap-[20px] p-4  lg:h-[490px] md:h-[480px]">
+
+        <div className="w-full md:h-[300px] h-[250px]  flex justify-center items-center mx-auto px-5">
+
           <img
             src={Image}
             alt="image"
-            className=" object-cover  h-full"
+            className=" object-contain  h-full w-full flex justify-center items-center mx-auto  "
           />
         </div>
 
@@ -45,33 +51,10 @@ function ShowNewpostData({ data }) {
               <span className="text-gray-400"> {Date}</span>
             </div>
 
-            <div className="relative">
-              <BsThreeDots
-                className="text-gray-700 text-[1.2rem] cursor-pointer"
-                onClick={() => setOpenThreeDotMenu(!openthreeDotMenu)}
-              />
-
-              <ul
-                className={`${
-                  openthreeDotMenu
-                    ? "translate-y-0 opacity-100 z-20 h-auto"
-                    : "translate-y-[-10px] opacity-0 z-[-1] h-0"
-                } transition-all duration-200 bg-white w-max boxShadow py-1 rounded-md absolute top-6 right-0`}
-              >
-                <li className="py-2 px-4 hover:bg-gray-100 cursor-pointer flex items-center gap-[8px] text-[0.9rem] text-gray-600">
-                  <FaRegBookmark />
-                  Make favorite
-                </li>
-                {/* make fav click incrase like count  */}
-                {/* <li className="py-2 px-4 hover:bg-gray-100 cursor-pointer flex items-center gap-[8px] text-[0.9rem] text-red-500">
-                        <AiOutlineDelete />
-                        Delete
-                      </li> */}
-              </ul>
-            </div>
+           
           </div>
 
-          <p className="text-gray-600 mt-3 text-[0.9rem]">
+          <p className="text-gray-600 mt-3 text-[0.9rem]   relative mb-6 ">
             {Message}
           </p>
 
@@ -79,28 +62,29 @@ function ShowNewpostData({ data }) {
           {/* make a pool like and like  */}
 
 
-          <div className="flex  justify-between">
+          <div className="flex  justify-between border md:gap-6">
 
-            <div className="flex gap-5 ">
+            <div className="flex gap-5 border">
 
 
               <div className="cursor-not-allowed  flex items-center gap-[6px] text-gray-400 hover:text-blue-700">
-                <FaRegHeart />
+                <HiMiniHandThumbUp/>
                 {Like}
               </div>
 
               <div className="flex items-center gap-[6px] text-gray-400 cursor-not-allowed hover:text-blue-700">
-                <FaRegBookmark />
-                Unlike 2
+                <HiMiniHandThumbDown/>
+                {UnLike}
               </div>
 
               <div className="flex items-center gap-[6px] text-gray-400 cursor-not-allowed hover:text-blue-700">
-                <FaRegBookmark />
-                post follow : {FollowPost}
+               <TbFocus2/>
+                {FollowPost}
               </div>
           
             </div>
-            <div>
+
+            <div className="border">
               <Link to={`/newpost-details/${_id}`} className="btn flex items-center gap-2 hover:bg-stone-950 hover:text-white transition delay-100 hover:shadow-2xl hover:shadow-emerald-600">
                 View Details <FaArrowRight />
               </Link>

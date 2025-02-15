@@ -37,7 +37,7 @@ function NewPostDetails() {
   //new-details-post/:id
 
   const likehandelButton = async () => {
-    const res = await useaxiosPublic.put(`new-details-post/${id}`);
+    const res = await useaxiosPublic.put(`/new-details-post/${id}`);
 
     if (res.status === 200) {
       alert("liked");
@@ -49,7 +49,7 @@ function NewPostDetails() {
   //unliked button
 
   const unlikedButtoon = async () =>{
-    const res = await useaxiosPublic.put(`new-details-post/${id}`);
+    const res = await useaxiosPublic.put(`/new-details-post-unlike/${id}`);
 
     if(res.status===200)
     {
