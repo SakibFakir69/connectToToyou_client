@@ -62,9 +62,9 @@ function ShowNewpostData({ data }) {
           {/* make a pool like and like  */}
 
 
-          <div className="flex  justify-between border md:gap-6">
+          <div className="flex  justify-between  md:gap-6">
 
-            <div className="flex gap-5 border">
+            <div className="flex gap-5 ">
 
 
               <div className="cursor-not-allowed  flex items-center gap-[6px] text-gray-400 hover:text-blue-700">
@@ -84,7 +84,7 @@ function ShowNewpostData({ data }) {
           
             </div>
 
-            <div className="border">
+            <div className="">
               <Link to={`/newpost-details/${_id}`} className="btn flex items-center gap-2 hover:bg-stone-950 hover:text-white transition delay-100 hover:shadow-2xl hover:shadow-emerald-600">
                 View Details <FaArrowRight />
               </Link>

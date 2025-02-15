@@ -67,6 +67,7 @@ function CreatePost() {
         Image: res.data?.data.display_url,
         UnLike:0,
         FollowPost:0,
+        Follow:0,
       };
       
       console.log(postUser);
