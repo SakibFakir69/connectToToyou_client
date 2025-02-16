@@ -22,6 +22,7 @@ function NewPost() {
 
   return (
     <div className="">
+      
       {isLoading ? (
         <div className="flex w-full justify-center">
           <span className="loading loading-ring loading-lg"></span>
