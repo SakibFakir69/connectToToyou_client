@@ -11,17 +11,16 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import UseTrendingPost from "../hook/UseTrendingPost";
 
 function TrendingPost() {
 
-
+  const { isLoading, trendingPost } = UseTrendingPost();
 
   return (
     <div className="p-6">
-
-        {/* find trending post by top like post  */}
-        {/* 10 data show here */}
-
+      {/* find trending post by top like post  */}
+      {/* 10 data show here */}
 
       <div className="text-center mb-4">
         <h2 className="text-2xl font-bold">Trending Posts</h2>
@@ -30,23 +29,66 @@ function TrendingPost() {
       <section className="h-[400px] border flex justify-center items-center">
         <Swiper
           spaceBetween={20}
-          slidesPerView={3}
+         
+          breakpoints={{
+            648:{slidesPerView:1},
+
+            768:{slidesPerView:2},
+            1224:{slidesPerView:3}
+            
+          }}
+
+
           navigation={true}
           pagination={{ clickable: true }}
           autoplay={{ delay: 3000 }}
           loop={true}
           modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-          className="h-40 flex justify-center"
-        >
-          <SwiperSlide className="bg-blue-300 p-10 text-center">01</SwiperSlide>
+          className="md:h-56 flex justify-center 
 
-          <SwiperSlide className="bg-red-300 p-10 text-center">02</SwiperSlide>
-          <SwiperSlide className="bg-green-300 p-10 text-center">
-            03
-          </SwiperSlide>
-          <SwiperSlide className="bg-yellow-300 p-10 text-center">
-            04
-          </SwiperSlide>
+          lg:h-60
+
+          h-48
+          
+          "
+        >
+          {/* like , post ,follow , post name , message */}
+
+          {trendingPost.map((item, key) => (
+            <SwiperSlide
+              className="bg-white  text-center shadow-2xl w-full "
+              key={key}
+            >
+
+              <div className=" w-full flex flex-col items-center justify-center p-4 ">
+             
+                <h3>{item.PostName}</h3>
+                <h3>{item.Title}</h3>
+                <p>{item.Message}</p>
+                {/* follow , like , unlike */}
+
+                <div className="text-center flex justify-center gap-10 mt-1">
+                  <p>Like: {item.Like || 0}</p>
+                  <p>UnLike{item.UnLike || 0}</p>
+                  <p> FollowPost{item. FollowPost 
+                  || 0}</p>
+                </div>
+              
+                
+
+              </div>
+
+
+
+
+
+
+
+
+            </SwiperSlide>
+          ))}
+
+
         </Swiper>
       </section>
     </div>

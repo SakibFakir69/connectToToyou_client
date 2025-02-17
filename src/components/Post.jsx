@@ -60,8 +60,10 @@ function Post() {
 
   return (
     <div className="bg-color min-h-screen px-4 border w-full ">
-      <section className="py-4 flex items-center mx-auto justify-center  mt-20 ">
-        <div className="w-full sm:[w-60%]  md:w-[70%] relative ">
+
+      <section className="py-4 flex items-center mx-auto justify-center bg-transparent   ">
+
+        <div className="w-full sm:[w-60%]  md:w-[70%] relative">
           <input
             type="email"
             placeholder="Email"
@@ -73,11 +75,7 @@ function Post() {
             Search
           </span>
         </div>
-        <div>
-          <select onSelect={"Drop"} className="py-3 px-4">
-            <option></option>
-          </select>
-        </div>
+   
       </section>
 
       {isLoading ? (
@@ -94,7 +92,7 @@ function Post() {
 
 
 
-          
+
           <section className="w-full grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 ">
             {data?.map((item, key) => (
               <div className="w-full md:min-w-[50%] md:max-w-[80%] relative boxShadow rounded-xl flex-col sm:flex gap-[20px] p-4  lg:h-[490px] md:h-[480px] bg-white justify-center items-center mx-auto m-2 border border-stone-200/60">
