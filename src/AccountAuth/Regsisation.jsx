@@ -40,7 +40,8 @@ function Regsisation() {
           const users_google={
             Name: user.displayName,  // ✅ Get user name
             Email: user.email,       // ✅ Get user email
-            photoURL: user.photoURL
+            photoURL: user.photoURL,
+            Follow:0,
           }
 
           useaxiosPublic
@@ -155,7 +156,8 @@ function Regsisation() {
         Password: password,
         Repeat_password: repeat_password,
         Image:res.data?.data?.
-        display_url
+        display_url,
+        Follow:0,
       };
 
       userReg_Create_email_Password(email, password)

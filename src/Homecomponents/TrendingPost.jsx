@@ -22,9 +22,7 @@ function TrendingPost() {
       {/* find trending post by top like post  */}
       {/* 10 data show here */}
 
-      <div className="text-center mb-4">
-        <h2 className="text-2xl font-bold">Trending Posts</h2>
-      </div>
+ 
 
       <section className="h-[400px] border flex justify-center items-center">
         <Swiper

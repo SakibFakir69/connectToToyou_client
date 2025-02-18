@@ -19,7 +19,7 @@ function HomeLayouts() {
        <TrendingPost/>
        
        <TopFollwer/>
-       <PopularHastag/>
+     
        <NewAccount/>
        <NewsLetter/>
        <AboutNow/>
