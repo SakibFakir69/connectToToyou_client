@@ -8,6 +8,7 @@ import PopularHastag from '../Homecomponents/PopularHastag'
 import NewAccount from '../Homecomponents/NewAccount'
 import AboutNow from '../Homecomponents/AboutNow'
 import NewsLetter from '../components/NewsLetter'
+import Footer from '../Homecomponents/Footer'
 
 
 function HomeLayouts() {
@@ -19,10 +20,13 @@ function HomeLayouts() {
        <TrendingPost/>
        
        <TopFollwer/>
+       <AboutNow/>
      
        <NewAccount/>
+
        <NewsLetter/>
-       <AboutNow/>
+       <Footer/>
+      
 
        {/* add about section why you here short message but you know all info */}
 

@@ -28,6 +28,7 @@ import {
 import ProfileLayout from "./Layout/ProfileLayout.jsx";
 import NewAccount from "./Homecomponents/NewAccount.jsx";
 import NewPostDetails from "./components/NewPostDetails.jsx";
+import ManagePost from "./components/ManagePost.jsx";
 
 const queryClient = new QueryClient();
 
@@ -61,8 +62,8 @@ const route = createBrowserRouter([
         element:<AllUsers/>
       },
       {
-        path:'/notification',
-        element:<Notifaction/>
+        path:'/mangepost',
+        element:<ManagePost/>
       },
 
       // details page of new post 

@@ -42,7 +42,7 @@ function NavbarPage() {
         <NavLink to={"/all-users"}>All Users</NavLink>
       </li>
       <li>
-        <NavLink to={"/notification"}>Notification</NavLink>
+        <NavLink to={"/mangepost"}>Mange Post</NavLink>
       </li>
     </>
   );
