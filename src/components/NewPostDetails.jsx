@@ -74,7 +74,8 @@ function NewPostDetails() {
   };
 
   const userfollowButton =async () =>{
-    const res = await useaxiosPublic.put(`/new-details-page-user-follow/${id}`)
+
+    const res = await useaxiosPublic.put(`/new-details-page-user-follow/${Email}`)
     
     if(res.status===200)
     {

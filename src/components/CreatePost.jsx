@@ -11,6 +11,7 @@ function CreatePost() {
   const { user, loading } = useAuthMangedHook();
 
   const [error, seterror] = useState("");
+  console.log(user);
 
   const createPost_button = async (event) => {
     try {
@@ -77,12 +78,43 @@ function CreatePost() {
         .post("/create-post", postUser)
         .then((result) => {
           if (result.status == 200) {
+            
+            useaxiosPublic.put(`/count-post/${user?.email}`)
+            .then((res)=>{
+              console.log("post udated")
+            })
+            .catch(error=>{
+              console.log("error on post")
+            })
+
+
+
+
             toast.success("Your post created");
 
             seterror("");
 
             event.target.reset();
+
+
+
+
+
+
+
+
+
+
+
+
           } else {
+
+
+
+
+
+
+
             toast.error("your post created failed");
           }
         })
@@ -93,6 +125,7 @@ function CreatePost() {
       console.log(error);
     }
   };
+
 
   return (
     <div className="mt-16">

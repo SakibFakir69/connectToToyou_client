@@ -18,6 +18,7 @@ import useTopFollwer from "../hook/useTopFollwer";
 
 function NewAccount() {
   const { isLoading, NewAccount } = useNewAccount();
+  console.log(NewAccount);
 
   return (
     <div className="p-4">
@@ -45,7 +46,17 @@ function NewAccount() {
         {NewAccount.map((item, key) => (
           <SwiperSlide className="md:h-[350px]  h-[300px] flex border justify-center items-center mx-auto w-full ">
             <div className="text-center border h-full flex items-center justify-center">
-              {key}
+              {/* image , name , Email */}
+
+              <div className="flex flex-col">
+                <div>
+                  <img src={item.Image} className="lg:h-72  md:h-64 sm:h-56 rounded-xl" />
+                </div>
+                <div>
+                  <p>{item.Name || ""}</p>
+                  <p>{item.Email}</p>
+                </div>
+              </div>
             </div>
           </SwiperSlide>
         ))}

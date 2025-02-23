@@ -38,10 +38,11 @@ function Regsisation() {
           goHome("/");
 
           const users_google={
-            Name: user.displayName,  // ✅ Get user name
-            Email: user.email,       // ✅ Get user email
+            Name: user.displayName,  //  Get user name
+            Email: user.email,       // Get user email
             photoURL: user.photoURL,
             Follow:0,
+            Post:0,
           }
 
           useaxiosPublic
@@ -158,13 +159,14 @@ function Regsisation() {
         Image:res.data?.data?.
         display_url,
         Follow:0,
+        Post:0,
       };
 
       userReg_Create_email_Password(email, password)
         .then((result) => {
           const user = result.user;
           setloading(false);
-          alert("Registration successful!");
+          
           goHome("/");
 
           useaxiosPublic
@@ -194,27 +196,23 @@ function Regsisation() {
     
     min-h-screen flex justify-center mx-auto w-full"
     >
-      <section className="md:flex items-center">
-        <div className="border border-l-stone-500/10 border-violet-500/20 flex-1 h-[580px] bg-gradient-to-bl from-red-300 to-teal-200 rounded">
+      <section className="md:flex items-center w-10/11">
+
+        <div className="border border-l-stone-500/10 border-violet-500/20 flex-1 h-[630px] bg-gradient-to-bl from-red-300 to-teal-200 rounded">
           {/* logo */}
+          
           <Lottie options={Options} />
         </div>
 
         {/* form */}
         <div className="border-2 border-teal-400/50 backdrop-blur-3xl flex-1 bg-black  rounded p-6">
           <form
-            class=" w-full h-full p-3 flex justify-center flex-col "
+            class=" w-full  p-3 flex justify-center flex-col "
             onSubmit={handleRegButtonSubmit}
           >
-            <div className="-mt-4">
-              <h2 className="text-white text-center text-4xl font-semibold flex justify-center gap-2">
-                <span className="text-red-500 mb-4 ">Regsitation</span>
-                Now{" "}
-              </h2>
-            </div>
-
-            <div class="grid md:grid-cols-2 md:gap-6">
-              <div class="relative z-0 w-full mb-5 group">
+            
+            <div class="grid  md:gap-6">
+              <div class="relative z-0 w-full mb-5 group  border-b-2">
                 <input
                   type="text"
                   name="name"
@@ -242,12 +240,13 @@ function Regsisation() {
               <label class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                 Email address
               </label>
+
             </div>
 
             <div className="mb-4 text-white">
-              <p>Enter your photo</p>
+              <p className="text-stone-300">Enter your photo</p>
 
-              <input type="file" name="image" placeholder="Enter your photo" className="py-3 text-center"/>
+              <input type="file" name="image" placeholder="Enter your photo" className="py-3 text-center border-dashed rounded"/>
             </div>
 
 

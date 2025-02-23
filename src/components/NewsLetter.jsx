@@ -5,6 +5,8 @@ import React from 'react'
 function NewsLetter() {
   return (
     <div className='w-full '>
+
+      {/* add background photo */}
       <h2>New newsletter</h2>
       
       <div className="px-10 mb-6">

@@ -83,21 +83,21 @@ function Login() {
   }
 
   return (
-    <div className="bg-gradient-to-br from-slate-900 to-teal-500  flex justify-center py-10  w-full min-h-screen">
+    <div className="bg-gradient-to-br from-slate-900 to-teal-500  flex justify-center py-10  w-full min-h-screen ">
 
 
 
 
-      <section class="hover:border-2 hover:border-teal-300/30  md:flex rounded  backdrop-blur-md bg-black transform transition delay-100  border-2 min-h-screen  ">
+      <section class="hover:border-2 hover:border-teal-300/30  md:flex   backdrop-blur-md bg-black transform transition delay-100  border-2 min-h-screen w-10/11 rounded-2xl  ">
 
 
         <div className="flex-1  text-center bg-stone-100">
-          <h2 className="text-4xl font-semibold">Login Now!</h2>
-          <p>Login and conect your friend and free spech</p>
+
+    
 
 
-       <div className="">
-       <Lottie options={animationOption}  />
+       <div className="rounded-xl">
+       <Lottie options={animationOption} className="rounded-2xl"  />
        </div>
         </div>
 
