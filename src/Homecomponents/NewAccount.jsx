@@ -30,12 +30,12 @@ function NewAccount() {
         slidesPerView={1}
         navigation
         pagination={{ clickable: true }}
-        scrollbar={{ draggable: true }}
+     
         autoplay={{ delay: 2500 }}
         loop={true}
         onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={() => console.log("slide change")}
-        className="lg:h-[450px]  md:h-[400px] h-[350px] border 
+        className="lg:h-[450px]  md:h-[400px] h-[350px] 
 
        
 
@@ -44,8 +44,8 @@ function NewAccount() {
         "
       >
         {NewAccount.map((item, key) => (
-          <SwiperSlide className="md:h-[350px]  h-[300px] flex border justify-center items-center mx-auto w-full ">
-            <div className="text-center border h-full flex items-center justify-center">
+          <SwiperSlide className="md:h-[350px]  h-[300px] flex  justify-center items-center mx-auto w-full ">
+            <div className="text-center  h-full flex items-center justify-center">
               {/* image , name , Email */}
 
               <div className="flex flex-col">

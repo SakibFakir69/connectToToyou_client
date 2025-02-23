@@ -22,13 +22,13 @@ function TopFollwer() {
   console.log(TopFollwer,"top follwer");
 
   return (
-    <div className="border p-4">
+    <div className=" p-4">
       <h2>Top follwer</h2>
 
       <section
         // install Swiper modules
 
-        className="grid lg:grid-cols-3 border-2  gap-5 p-3 md:grid-cols-2 grid-cols-1 md:h-full "
+        className="grid lg:grid-cols-3   gap-5 p-3 md:grid-cols-2 grid-cols-1 md:h-full "
       
 
        
@@ -58,12 +58,12 @@ function TopFollwer() {
             
             >
 
-              <div className="md:h-22 md:w-22  border rounded-full ">
+              <div className="md:h-22 md:w-22  rounded-full ">
                 <img src={item.key} alt={item.Name} className="md:h-4/5 h-20 w-20"/>
               </div>
 
-              <div className="border h-full w-full flex flex-col justify-center mx-auto items-center">
-                <p className="flex gap-2 justify-center items-center font-semibold"> <span className="md:text-xl text-sm">Name</span>
+              <div className=" h-full w-full flex flex-col justify-center mx-auto items-center">
+                <p className="flex gap-2 justify-center items-center font-semibold"> <span className="md:text-xl text-sm ">Name</span>
 
                 <span className="md:text-xl text-sm">{item.Name}</span> 
                 </p>

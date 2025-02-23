@@ -20,9 +20,10 @@ function HomeLayouts() {
        <TrendingPost/>
        
        <TopFollwer/>
-       <AboutNow/>
+   
      
        <NewAccount/>
+       <AboutNow/>
 
        <NewsLetter/>
        <Footer/>
