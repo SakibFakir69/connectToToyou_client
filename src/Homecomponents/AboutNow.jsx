@@ -163,24 +163,29 @@ function AboutNow() {
           </motion.div>
         </section>
 
-        <section className=" border md:flex gap-4 mt-6 ">
+        <section className="  md:flex gap-4 mt-6 ">
           {/* img */}
 
-          <div className="flex flex-1 justify-center">
+          <motion.div
+          initial={{x:-100}}
+          whileInView={{x:0}}
+          transition={{duration:0.5, delay:0.2,ease:"easeInOut"}}
+          
+          className="flex flex-1 justify-center">
             <img src={mission} alt="mission img" className="md:h-80 h-72" />
-          </div>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="border p-2 flex flex-col gap-2 flex-1"
+            className="bg-fuchsia-600  flex flex-col gap-2 flex-1 p-3 rounded"
           >
             <div>
-              <h2 className="md:text-2xl font-semibold text-xl">
+              <h2 className="md:text-2xl font-semibold text-xl text-white">
                 Our Aim & Mission
               </h2>
-              <p>
+              <p className="text-stone-200 font-semibold">
                 At [Your Platform Name], our mission is simple: to create a
                 space where every voice matters. We believe that even the
                 shortest messages can inspire, connect, and bring change.
@@ -189,29 +194,29 @@ function AboutNow() {
 
             <div>
               <div>
-                <h2 className="md:text-xl md:font-bold font-semibold">
+                <h2 className="md:text-xl md:font-bold font-semibold text-white">
                   🎯 Our Aim
                 </h2>
-                <p>
+                <p className="text-stone-50 opacity-96">
                   To provide a fast, easy, and engaging platform where users can
                   share their thoughts in a short and meaningful format.
                 </p>
               </div>
 
               <div>
-                <h2 className="md:text-xl md:font-bold font-semibold">
+                <h2 className="md:text-xl md:font-bold font-semibold text-white">
                   🚀 Our Mission
                 </h2>
-                <p>
-                  Empower Expression – Allow users to share ideas freely and
+                <p className="text-stone-50 opacity-95">
+                <i class="ri-star-fill"></i> Empower Expression – Allow users to share ideas freely and
                   creatively.
                 </p>
-                <p>
-                  Ensure Simplicity – Keep everything quick, user-friendly, and
+                <p className="text-stone-50 opacity-96">
+                <i class="ri-star-fill"></i> Ensure Simplicity – Keep everything quick, user-friendly, and
                   accessible
                 </p>
-                <p>
-                  Prioritize Privacy – Maintain a safe and secure environment
+                <p className="text-stone-50 opacity-96">
+                <i class="ri-star-fill"></i> Prioritize Privacy – Maintain a safe and secure environment
                   for all users
                 </p>
               </div>
