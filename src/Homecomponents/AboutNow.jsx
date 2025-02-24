@@ -69,38 +69,48 @@ function AboutNow() {
 
         <section className="w-full border md:flex gap-8  ">
           {/* img */}
-          <div className="flex-1 flex justify-center">
+          <motion.div
+          initial={{scale:0.5,opacity:0.5,rotate:90}}
+          whileInView={{scale:1,opacity:1,rotate:0}}
+          transition={{duration:0.5,delay:0.25,ease:"easeInOut"}}
+          
+          
+          
+          
+          className="flex-1 flex justify-center">
+
             <img src={community} alt="community img" className="md:h-80 h-72" />
-          </div>
+          </motion.div>
 
           {/* text */}
           <motion.div
             initial={{ rotateY: -180, opacity: 0 }}
             whileInView={{ rotateY: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2, ease: "easeInOut" }}
-            className="flex-1 flex flex-col gap-2 space-y-3"
+            className="flex-1 flex flex-col gap-2 space-y-3 bg-violet-500 p-3"
           >
             <div className="flex flex-col gap-2">
-              <h2 className="md:text-2xl font-semibold">
+              <h2 className="md:text-2xl font-semibold text-white text-xl">
                 Why Join Our Community?
               </h2>
               <p>
-              <i class="ri-dashboard-line"></i> We don’t just provide a space for messages—we create an
+              <i class="ri-dashboard-line text-fuchsia-600 font-semibold"></i>
+              <span className="font-semibold text-stone-100"> We don’t just provide a space for messages—we create an
                 experience where ideas thrive. [Your Platform Name] is built for
-                those who want to make an impact.
+                those who want to make an impact.</span>
               </p>
             </div>
 
             <div className="flex gap-2 flex-col">
-              <p>
+              <p className="text-stone-100">
                 🛠 Innovative & Dynamic – A fresh take on social interaction
                 through short, meaningful messages.
               </p>
-              <p>
+              <p  className="text-stone-100">
                 💡 Express Yourself Freely – Share your thoughts, ideas, and
                 messages in a meaningful way
               </p>
-              <p>
+              <p  className="text-stone-100">
                 🌍 A Place to Connect – Engage with like-minded individuals and
                 discover new perspectives.
               </p>
