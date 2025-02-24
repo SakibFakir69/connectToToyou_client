@@ -17,42 +17,52 @@ function AboutNow() {
       <section className=" p-4">
         {/* 2 */}
 
-        <section className="w-full border md:flex gap-8  ">
+        <section className="w-full  md:flex gap-8  ">
           <motion.div
             initial={{ rotateY: 180, opacity: 0 }}
             whileInView={{ rotateY: 0, opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.2, ease: "easeInOut" }}
             whileHover={{ scale: 1.01 }}
-            className="border flex flex-col space-y-3 flex-1 p-2 bg-white "
+            className=" flex flex-col space-y-3 flex-1 p-3 bg-gradient-to-b bg-black rounded"
           >
-            <h2 className="md:text-2xl font-semibold ">Why Our Platform</h2>
+            <h2 className="md:text-2xl font-semibold text-xl text-white ml-5">Why Our Platform</h2>
             {/* use icon  */}
-            <div className="flex flex-col space-y-2">
-              <p>
+
+            <div className="flex flex-col space-y-5 p-2 px-5">
+              <p className="font-semibold text-slate-200">
                 {" "}
-                we provide a seamless and engaging space for users to share
+                <i class="ri-dashboard-line text-green-400"></i> we provide a seamless and engaging space for users to share
                 their thoughts and ideas effortlessly.
               </p>
 
-              <span>
-                ✅Accessible Anytime, Anywhere – Share and engage with messages
+              <span className="text-slate-200 opacity-85">
+                <i class="ri-star-s-fill text-yellow-400"></i> Accessible Anytime, Anywhere – Share and engage with messages
                 from any device, at any time.
               </span>
-              <span>
-                Creative & Interactive – Add a title, message, and description
+              <span className="text-slate-200 opacity-85">
+              <i class="ri-star-s-fill text-yellow-400"></i> Creative & Interactive – Add a title, message, and description
                 to make your words stand out
               </span>
 
-              <span>User can post short message</span>
+              <span className="text-slate-200 opacity-85"><i class="ri-star-s-fill text-yellow-400"></i> User can post short message</span>
             </div>
           </motion.div>
 
           {/* 2 */}
 
           {/* img */}
-          <div className="flex-1 border flex  justify-center">
-            <img src={whyImage} alt="why img" className="md:h-80 h-72 border" />
-          </div>
+          <motion.div 
+
+          initial={{opacity:0,scale:0}}
+          whileInView={{opacity:1,scale:1}}
+          transition={{duration:0.5, delay:0.2,ease:"easeInOut"}}
+    
+          
+          
+          className="flex-1 flex  justify-center">
+            <img src={whyImage} alt="why img" className="md:h-80 h-72 " />
+          </motion.div>
+          
         </section>
 
         {/* 2nd section */}
@@ -75,7 +85,7 @@ function AboutNow() {
                 Why Join Our Community?
               </h2>
               <p>
-                We don’t just provide a space for messages—we create an
+              <i class="ri-dashboard-line"></i> We don’t just provide a space for messages—we create an
                 experience where ideas thrive. [Your Platform Name] is built for
                 those who want to make an impact.
               </p>
