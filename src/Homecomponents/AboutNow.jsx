@@ -120,39 +120,47 @@ function AboutNow() {
 
         {/* 4 */}
 
-        <section className=" border md:flex gap-4 mt-6 ">
+        <section className="  md:flex gap-4 mt-6 ">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="border p-2 flex flex-col gap-4 flex-1"
+            className=" p-3 flex flex-col gap-4 flex-1 bg-red-500 "
           >
-            <div className="flex flex-col gap-2">
-              <h2 className="md:text-2xl font-semibold">
+            <div className="flex flex-col gap-2  p-2">
+              <h2 className="md:text-2xl font-semibold text-white text-xl">
                 Your Voice, Your Space
               </h2>
 
-              <p>
+              <p className="font-semibold text-slate-200 opacity-95">
                 At [Your Platform Name], we believe that every voice matters.
                 Whether you want to share a thought, express an idea, or connect
                 with others, this is your space to be heard.
               </p>
+
+              
             </div>
 
-            <div>
-              <p>
+            <div className=" flex flex-col spcae-y-3 p-2">
+              <p className="text-stone-200 opacity-85">
                 🗣 Speak Freely – Share your thoughts in a way that feels right
                 for you.
               </p>
-              <p>Your simple text louder then your voice</p>
+              <p  className="text-stone-200 ml-4 opacity-85">Your simple text louder then your voice</p>
             </div>
+
           </motion.div>
 
           {/* 4 */}
 
-          <div className="flex flex-1 justify-center ">
+          <motion.div
+
+          initial={{scale:0, opacity:0.4,rotate:180}}
+          whileInView={{scale:1, opacity:1,rotate:0 }}
+          transition={{duration:0.5, delay:0.2, ease:"easeInOut"}}
+          className="flex flex-1 justify-center ">
             <img src={voice} alt="voice img" className="md:h-80 h-72" />
-          </div>
+          </motion.div>
         </section>
 
         <section className=" border md:flex gap-4 mt-6 ">
