@@ -1,13 +1,69 @@
 
 
 import React from 'react'
+import usePublicHook from '../Api/usePublicHook';
+import {toast,ToastContainer} from "react-toastify"
 
 function NewsLetter() {
+
+  const useaxiosapi = usePublicHook();
+
+
+
+
+
+
+  const handelSubmitfrom= (event)=>{
+
+    event.preventDefault();
+
+    const info = new FormData(event.target);
+    const info_form = Object.fromEntries(info);
+
+    const {name, email}  = info_form;
+
+    if(!name){
+      toast.error("Enter your name");
+      return ;
+    }
+    if(!email)
+    {
+      toast.error("Enter your email");
+
+      return ;
+    }
+
+    const subcriber={
+      name:name,
+      email:email,
+    }
+
+
+    useaxiosapi.post('/newletters', subcriber)
+    .then((res)=>{
+      if(res.status==200)
+      {
+        toast.success("Thanks for join newsletter")
+        event.target.reset();
+        
+      }
+    })
+    .catch((error)=>{
+      console.log(error.message);
+      toast.error("falied");
+    })
+
+
+
+
+  }
+
   return (
     <div className='w-full '>
 
       {/* add background photo */}
-      <h2>New newsletter</h2>
+    
+      <ToastContainer/>
       
       <div className="px-10 mb-6">
       <div className="px-10 rounded-md    bg-gradient-to-b from-fuchsia-700  to-blue-600 flex  md:flex-row flex-col">
@@ -24,7 +80,7 @@ function NewsLetter() {
           </p>
         </div>
 
-        <form className="flex gap-1 justify-center items-center flex-col flex-1 w-full " >
+        <form className="flex gap-1 justify-center items-center flex-col flex-1 w-full "  onSubmit={handelSubmitfrom}>
 
          <div className=" w-10/12 flex flex-col space-y-6 py-8 md:mt-6">
          <input

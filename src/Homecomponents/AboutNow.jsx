@@ -12,7 +12,7 @@ function AboutNow() {
       {/* take content  */}
       {/* take group */}
 
-      <div className="size-40 border absolute filter blur-md bg-violet-300  opacity-10"></div>
+      <div className="size-40  absolute filter blur-md bg-violet-300  opacity-10"></div>
 
       <section className=" p-4">
         {/* 2 */}
