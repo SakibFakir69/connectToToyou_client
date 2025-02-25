@@ -115,7 +115,8 @@ function Post() {
 
                 <div className="w-full mt-5 sm:mt-0">
                   <div className="flex sm:items-center justify-between w-full">
-                    <div className="flex sm:flex-row flex-col sm:items-center sm:gap-[5px]">
+
+                    <div className="flex justify-around gap-10">
                       <h1 className="text-[1.2rem] font-bold">
                         {item.PostName}
                       </h1>
