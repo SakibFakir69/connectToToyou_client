@@ -23,7 +23,7 @@ function TopFollwer() {
 
   return (
     <div className=" p-4">
-      <h2>Top follwer</h2>
+
 
       <section
         // install Swiper modules
@@ -44,7 +44,7 @@ function TopFollwer() {
           <div key={key} className="  bg-white ">
             {/* name , follwer , total post , imge */}
             
-            <motion.div className="flex flex-col justify-center items-center space-y-3  rounded-md  hover:shadow-2xl shadow-xl  bg-teal-600/30  md:p-4 p-3 "
+            <motion.div className="flex flex-col justify-center items-center space-y-3  rounded-md  hover:shadow-2xl shadow-xl bg-gradient-to-br    md:p-4 p-3 "
             initial={{scale:0}}
        
             transition={{duration:0.2}}

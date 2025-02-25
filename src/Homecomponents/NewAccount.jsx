@@ -22,7 +22,7 @@ function NewAccount() {
 
   return (
     <div className="p-4">
-      <h2>New account</h2>
+  
       <Swiper
         // install Swiper modules
         modules={[Navigation, Pagination, A11y, Autoplay]}

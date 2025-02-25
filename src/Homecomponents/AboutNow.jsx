@@ -67,7 +67,7 @@ function AboutNow() {
 
         {/* 2nd section */}
 
-        <section className="w-full border md:flex gap-8  ">
+        <section className="w-full  md:flex gap-8  ">
           {/* img */}
           <motion.div
           initial={{scale:0.5,opacity:0.5,rotate:90}}
@@ -225,7 +225,6 @@ function AboutNow() {
         </section>
       </section>
 
-      <h2>Thanks you for connect out family</h2>
     </article>
   );
 }

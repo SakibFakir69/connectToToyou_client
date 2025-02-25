@@ -24,7 +24,7 @@ function TrendingPost() {
 
  
 
-      <section className="h-[400px] border flex justify-center items-center">
+      <section className="h-[400px]  flex justify-center items-center">
         <Swiper
           spaceBetween={20}
          
