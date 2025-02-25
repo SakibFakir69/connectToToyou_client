@@ -61,39 +61,39 @@ function Post() {
   return (
     <div className="bg-color min-h-screen px-4 border w-full ">
 
-      <section className="py-4 flex items-center mx-auto justify-center bg-transparent   ">
+      <section class="w-full flex justify-center items-center py-2 z-40 fixed backdrop-blur-md ">
 
-        <div className="w-full sm:[w-60%]  md:w-[70%] relative">
+        
+
+        <div class="w-1/2  ">
+
+          
+
           <input
-            type="email"
-            placeholder="Email"
-            onChange={(e) => setsearch(e.target.value)}
-            className="border bg-transparent border-border py-3 pl-4 pr-[115px] outline-none w-full rounded-md"
+          onChange={(e)=> setsearch(e.target.value)}
+          name="name"
+            type="search"
+            id="default-search"
+            class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500  dark:focus:border-blue-500
+          
+            
+            
+            "
+            placeholder="Search Mockups, Logos..."
+            required
           />
-
-          <span className="bg-primary text-white absolute top-0 right-0 h-full px-5 flex items-center justify-center rounded-r-md cursor-pointer hover:bg-gray-400 group">
-            Search
-          </span>
+         
         </div>
-   
       </section>
 
       {isLoading ? (
-        <div className="w-full flex justify-between items-center mx-auto ">
-          <span className="loading loading-ring  w-32"></span>
+        <div className="flex justify-center items-center py-20">
+          <span className="loading loading-ring  w-28 flex justify-center items-center"></span>
         </div>
+
       ) : (
         <section>
-
-
-
-
-
-
-
-
-
-          <section className="w-full grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 ">
+          <section className="w-full grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 py-20">
             {data?.map((item, key) => (
               <div className="w-full md:min-w-[50%] md:max-w-[80%] relative boxShadow rounded-xl flex-col sm:flex gap-[20px] p-4  lg:h-[490px] md:h-[480px] bg-white justify-center items-center mx-auto m-2 border border-stone-200/60">
                 <div className="w-full  flex justify-center items-center mx-auto px-5 border h-60">
