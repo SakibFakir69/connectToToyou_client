@@ -93,14 +93,23 @@ function Post() {
 
       ) : (
         <section>
-          <section className="w-full grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 py-20">
+          <section className="w-full grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 py-20 gap-2">
+
             {data?.map((item, key) => (
-              <div className="w-full md:min-w-[50%] md:max-w-[80%] relative boxShadow rounded-xl flex-col sm:flex gap-[20px] p-4  lg:h-[490px] md:h-[480px] bg-white justify-center items-center mx-auto m-2 border border-stone-200/60">
-                <div className="w-full  flex justify-center items-center mx-auto px-5 border h-60">
+
+              <div className="border p-2 bg-white border-stone-200 rounded
+
+              shadow-xl
+              hover:shadow-2xl
+              hover:shadow-green-200
+              
+              ">
+
+                <div className="w-full  flex justify-center items-center mx-auto px-5  h-60 ">
                   <img
                     src={item.Image}
                     alt="image"
-                    className=" object-contain  w-full flex justify-center items-center mx-auto h-52 border  "
+                    className=" object-contain  w-full flex justify-center items-center mx-auto h-56   "
                   />
                 </div>
 
