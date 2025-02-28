@@ -1,92 +1,103 @@
-
-
-
-
-
-import React, { createContext, useEffect, useState } from 'react'
-import { Auth } from '../firebase/config';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
-import { GoogleAuthProvider } from 'firebase/auth';
+import React, { createContext, useEffect, useState } from "react";
+import { Auth } from "../firebase/config";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+import { GoogleAuthProvider } from "firebase/auth";
+import usePublicHook from "../Api/usePublicHook";
+import { data } from "react-router";
 
 // now create context then use
 
 export const MYContext = createContext();
 
+function AuthContext({ children }) {
+  // manage auth and authncation
 
-function AuthContext({children}) {
+  const [loading, setloading] = useState(true);
+  const [user, setuser] = useState(null);
 
-    // manage auth and authncation
+  // create password login
 
-    const [ loading , setloading ] = useState(true);
-    const [ user , setuser ] = useState(null);
+  const userReg_Create_email_Password = (email, password) => {
+    return createUserWithEmailAndPassword(Auth, email, password);
+  };
+  // create google sinup
+  const Provider = new GoogleAuthProvider();
+  const userGoogle_login_handle = () => {
+    return signInWithPopup(Auth, Provider);
+  };
 
+  // Login
 
+  const LoginWith_email_ans_password_handle = (email, passsword) => {
+    return signInWithEmailAndPassword(Auth, email, passsword);
+  };
+  const Login_with_Google_handle = () => {
+    return signInWithPopup(Auth, Provider);
+  };
 
-    // create password login 
+  // logout
 
-    const userReg_Create_email_Password = (email , password) =>{
-        return createUserWithEmailAndPassword(Auth, email , password);
+  const handel_log_out = () => {
+    return signOut(Auth);
+  };
+  const useaxiosapi = usePublicHook();
 
-    }
-    // create google sinup 
-    const Provider = new GoogleAuthProvider();
-    const userGoogle_login_handle = () =>{
-        return signInWithPopup(Auth,Provider);
+  useEffect(() => {
+    const unscribe = onAuthStateChanged(Auth, (currentUser) => {
+      if (currentUser) {
+        setloading(true);
+        setuser(currentUser);
 
-    }
+        const email = currentUser?.email;
 
-    // Login 
+        useaxiosapi
+          .post("/login", {Email: email }, { withCredentials: true })
+          .then((res) => {
+            console.log(res);
+            localStorage.setItem("token", res.data?.token);
 
+            // get token
+            
+            
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        localStorage.removeItem("token");
+      }
+      setloading(false);
+    });
 
-    const LoginWith_email_ans_password_handle = (email , passsword)=>{
-        return signInWithEmailAndPassword(Auth,email,passsword)
+    return unscribe;
+  }, []);
 
-    }
-    const Login_with_Google_handle = () =>{
-        return signInWithPopup(Auth,Provider);
-    }
-
-    // logout 
-
-    const handel_log_out = ()=>{
-        return signOut(Auth);
-    }
-
-    useEffect(()=>{
-
-        const unscribe = onAuthStateChanged(Auth, (currentUser)=>{
-            if(currentUser)
-            {
-                setloading(true);
-                setuser(currentUser);
-            }
-            setloading(false);
-
-        })
-
-        return unscribe;
-
-    },[])
-
-
-
-    const authInfo = {
-        user , loading , setloading, setuser,userReg_Create_email_Password,userGoogle_login_handle
-        ,LoginWith_email_ans_password_handle,Login_with_Google_handle,handel_log_out
-    }
-
-
+  const authInfo = {
+    user,
+    loading,
+    setloading,
+    setuser,
+    userReg_Create_email_Password,
+    userGoogle_login_handle,
+    LoginWith_email_ans_password_handle,
+    Login_with_Google_handle,
+    handel_log_out,
+  };
 
   return (
     <div>
-        <MYContext.Provider value={authInfo}>
-            {/* passing compnenent */}
-            {children}
-        </MYContext.Provider>
-
-
+      <MYContext.Provider value={authInfo}>
+        {/* passing compnenent */}
+        {children}
+      </MYContext.Provider>
     </div>
-  )
+  );
 }
 
-export default AuthContext
+export default AuthContext;
