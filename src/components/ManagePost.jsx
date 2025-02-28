@@ -9,7 +9,7 @@ import {
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import { setLogLevel } from "firebase/app";
 
@@ -70,6 +70,10 @@ function ManagePost() {
 
   const [liveimg, setliveimg] = useState("");
 
+  const [upload, setupload] = useState(true);
+
+  const [ submit  , setsubmit ] = useState(true)
+
   const imgaeLiveCreate = async (e) => {
     e.preventDefault();
 
@@ -83,6 +87,14 @@ function ManagePost() {
         "Content-Type": "multipart/form-data",
       },
     });
+    console.log(res)
+
+    if (res.data.
+      success
+      
+      ) {
+      toast.success("Image upload done")
+    }
 
     setliveimg(res.data?.data?.display_url);
 
@@ -113,16 +125,15 @@ function ManagePost() {
 
   const [isopen, setisopend] = useState(true);
 
- 
   const openModal = () => {
     setisopend(true);
+
     if (modalRef.current) modalRef.current.showModal();
   };
   const closeModal = () => {
     setisopend(false);
     if (modalRef.current) modalRef.current.close();
   };
-
 
   const updatePost = async (id) => {
     // convet usequry
@@ -136,6 +147,7 @@ function ManagePost() {
     if (res.status === 201) {
       toast.success("update done");
       closeModal;
+      
     }
 
     console.log(updateDetails);
@@ -148,10 +160,11 @@ function ManagePost() {
       <p>manage post {myPost?.length}</p>
 
       {/* section take contet */}
+      <ToastContainer/>
 
       {isLoading ? (
-        <div className="py-16 border">
-          <span className="loading loading-ring  w-32"></span>
+        <div className="py-16 border w-full flex justify-center">
+          <span className="loading loading-ring  w-20"></span>
         </div>
       ) : (
         <section>
@@ -174,36 +187,41 @@ function ManagePost() {
                   <div className="flex justify-between">
                     {/* Open the modal using document.getElementById('ID').showModal() method */}
                     {/*  method */}
-                    <button
-                      className="btn"
-                      onClick={
-                       openModal
-                      }
-                    >
+                    <button className="btn" onClick={openModal}>
                       Edit
                     </button>
 
                     {isopen && (
                       <dialog
-                      ref={modalRef}
+                        ref={modalRef}
                         id="my_modal_5"
                         className="modal modal-bottom sm:modal-middle"
                       >
                         <div className="modal-box flex flex-col ">
                           <div className="flex flex-col">
-                            <div className="flex flex-col gap-4">
-                              <span>Upload image</span>
+                            <div className="flex flex-col gap-4 justify-center">
+                              <span className="text-xl font-semibold">
+                                Upload image
+                              </span>
 
-                              <form onSubmit={imgaeLiveCreate}>
+                              <form
+                                onSubmit={imgaeLiveCreate}
+                                className="flex  items-center gap-2"
+                              >
                                 <input
                                   onChange={handleFileChange}
                                   name="image"
                                   type="file"
                                   placeholder="Enter your photo"
-                                  className="border-dotted h-10 text-center cursor-pointer"
+                                  className="border-dotted h-10 text-center  rounded cursor-pointer"
                                 />
-                                <button type="submit" className="btn">
-                                  Uplod
+
+                                <button
+                                  disabled={upload}
+                                  type="submit"
+                                  className="md:px-8 px-7 py-2.5 md:py-3  text-white btn btn-primary"
+                                >
+                                  Upload
                                 </button>
                               </form>
                             </div>
@@ -215,6 +233,7 @@ function ManagePost() {
                               type="text"
                               name="postname"
                               placeholder="Enter your Post name"
+                              className="min-h-[50px] rounded  text-left px-2"
                             />
 
                             <input
@@ -222,6 +241,7 @@ function ManagePost() {
                               type="text"
                               name="title"
                               placeholder="Enter your title"
+                              className="min-h-[50px] rounded  text-left px-2"
                             />
 
                             <textarea
@@ -229,6 +249,7 @@ function ManagePost() {
                               typeof="text"
                               name="message"
                               placeholder="Enter your message"
+                              className="rounded min-h-[60px] text-left px-2"
                             />
 
                             <select
@@ -246,16 +267,19 @@ function ManagePost() {
                             </select>
                           </div>
 
-                          <div>
+                          <div className="flex justify-between">
                             <button
-                              disabled={false}
-                              className="btn cursor-pointer btn-warning"
+                              disabled={submit}
+                              className="btn cursor-pointer px-6 py-2.5 bg-blue-600 md:px-8 md:py:3 hover:bg-teal-400/10 text-white hover:text-black"
                               onClick={() => updatePost(item._id)}
                             >
-                              Close
+                              Submit
                             </button>
 
-                            <button onClick={closeModal} className="btn btn-primary cursor-pointer">
+                            <button
+                              onClick={closeModal}
+                              className="btn bg-violet-600 cursor-pointer px-6 py-2.5 md:px-8 md:py:3 text-fuchsia-50 hover:bg-transparent hover:text-black duration-300 delay-150 transition"
+                            >
                               Cancle
                             </button>
                           </div>
