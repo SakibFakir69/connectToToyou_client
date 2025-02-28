@@ -184,10 +184,14 @@ function ManagePost() {
 
                   {/* button */}
 
-                  <div className="flex justify-between">
+                  <div className="flex justify-between w-6/12">
                     {/* Open the modal using document.getElementById('ID').showModal() method */}
                     {/*  method */}
-                    <button className="btn" onClick={openModal}>
+                    <button className="md:px-12 px-10 md:py-2.5 py-2 bg-orange-700 text-xl  rounded text-white hover: bg-orange-700720 hover:text-black duration-300 delay-200 cursor-pointer  m-2 " 
+                    
+                    onClick={openModal}>
+                      {/* add  */}
+                      <i class="ri-pencil-line"></i>
                       Edit
                     </button>
 
@@ -217,9 +221,9 @@ function ManagePost() {
                                 />
 
                                 <button
-                                  disabled={upload}
+                          
                                   type="submit"
-                                  className="md:px-8 px-7 py-2.5 md:py-3  text-white btn btn-primary"
+                                  className="md:px-8 px-7 py-2.5 md:py-3  text-white btn btn-primary hover:bg-emerald-400/15 hover:text-black"
                                 >
                                   Upload
                                 </button>
@@ -269,7 +273,7 @@ function ManagePost() {
 
                           <div className="flex justify-between">
                             <button
-                              disabled={submit}
+                            
                               className="btn cursor-pointer px-6 py-2.5 bg-blue-600 md:px-8 md:py:3 hover:bg-teal-400/10 text-white hover:text-black"
                               onClick={() => updatePost(item._id)}
                             >
@@ -289,7 +293,7 @@ function ManagePost() {
 
                     {/* delete */}
                     <button
-                      className="btn btn-warning"
+                      className="md:px-12 px-10 md:py-2 py-1 border bg-red-600/40 hover:bg-green-500/40 border-white/30  cursor-pointer transition delay-150 duration-300 text-white font-semibold  ml-3 m-2 rounded"
                       onClick={() => deleteButton(item._id)}
                     >
                       Delete
