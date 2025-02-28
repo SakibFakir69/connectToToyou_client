@@ -170,6 +170,7 @@ function CreatePost() {
                 <label for="category" class="block mb-2 text-sm font-medium">
                   Category
                 </label>
+                
                 <select
                   id="category"
                   name="Category"
