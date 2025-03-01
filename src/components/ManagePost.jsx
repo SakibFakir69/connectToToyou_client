@@ -186,6 +186,7 @@ function ManagePost() {
   const mutation = useMutation(
 
     async (updatedPost) => {
+
       return await useaxiosapi.put(`/update-post/${updatedPost.id}`, updatedPost);
     },
     {
@@ -229,8 +230,8 @@ function ManagePost() {
   // relame time update and validation 
 
   return (
-    <div className="border bg-stone-200 min-h-screen">
-      <p>manage post {myPost?.length}</p>
+    <div className=" bg-stone-200 min-h-screen">
+  
 
       {/* section take contet */}
       <ToastContainer/>
