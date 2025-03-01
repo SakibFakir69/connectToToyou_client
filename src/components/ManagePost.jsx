@@ -11,7 +11,7 @@ import {
 } from "@tanstack/react-query";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
-import { setLogLevel } from "firebase/app";
+
 
 const img_bb_api_key = import.meta.env.VITE_YOUR_CLIENT_API_KEY;
 
@@ -138,6 +138,27 @@ function ManagePost() {
   const updatePost = async (id) => {
     // add real time update 
     // convet usequry
+
+    // 
+
+    if (postname.length <= 4) {
+      toast.error("Post name must be 5 length");
+      return;
+    }
+    if (title.length <= 8) {
+      toast.error("Title name must be 8 length upper");
+      return;
+    }
+    if (!(message.length > 20 &&  50>message.length )) {
+      toast.error("Message must be 20 word to under 50 word");
+      return;
+    }
+
+
+
+
+
+
     const res = await useaxiosapi.put(`/update-post/${id}`, {
       PostName: postname,
       Category: category,
