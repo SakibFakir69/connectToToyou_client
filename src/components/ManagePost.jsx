@@ -237,11 +237,11 @@ function ManagePost() {
       <ToastContainer/>
 
       {isLoading ? (
-        <div className="py-16 border w-full flex justify-center">
+        <div className="py-16  w-full flex justify-center">
           <span className="loading loading-ring  w-20"></span>
         </div>
       ) : (
-        <section className="">
+        <section className="py-20">
           {myPost.map((item, key) => (
             <div className="border flex justify-center m-2 p-3 " key={key}>
               <div className="border p-2 bg-white shadow-xl rounded border-stone-300">
