@@ -4,7 +4,7 @@ import usePublicHook, { useaxiosPublic } from "../Api/usePublicHook";
 import Swal from "sweetalert2";
 
 import {
-  QueryClient,
+
   useMutation,
   useQuery,
   useQueryClient,
@@ -27,7 +27,7 @@ function ManagePost() {
   const useaxiosapi = usePublicHook();
   const queryclient = useQueryClient();
 
-  const { data: myPost = [], isLoading } = useQuery({
+  const { data: myPost = [], isLoading,refetch } = useQuery({
     queryKey: ["mypost", user?.email],
 
     queryFn: async () => {
@@ -35,6 +35,7 @@ function ManagePost() {
       return res.data;
     },
     enabled: !!user?.email,
+  
   });
   console.log(myPost);
 
@@ -52,6 +53,7 @@ function ManagePost() {
         try {
           await useaxiosapi.delete(`/manage-post-delete/${id}`);
           toast.success("Deleted");
+          refetch();
         } catch (error) {
           toast.error(error.message);
         }
@@ -73,6 +75,8 @@ function ManagePost() {
   const [upload, setupload] = useState(true);
 
   const [ submit  , setsubmit ] = useState(true)
+
+
 
   const imgaeLiveCreate = async (e) => {
     e.preventDefault();
@@ -135,11 +139,66 @@ function ManagePost() {
     if (modalRef.current) modalRef.current.close();
   };
 
-  const updatePost = async (id) => {
-    // add real time update 
-    // convet usequry
+  // const updatePost = async (id) => {
+  //   // add real time update 
+  //   // convet usequry
 
-    // 
+  //   // 
+
+  //   if (postname.length <= 4) {
+  //     toast.error("Post name must be 5 length");
+  //     return;
+  //   }
+  //   if (title.length <= 8) {
+  //     toast.error("Title name must be 8 length upper");
+  //     return;
+  //   }
+  //   if (!(message.length > 20 &&  50>message.length )) {
+  //     toast.error("Message must be 20 word to under 50 word");
+  //     return;
+  //   }
+
+
+
+
+
+
+  //   const res = await useaxiosapi.put(`/update-post/${id}`, {
+  //     PostName: postname,
+  //     Category: category,
+  //     Message: message,
+  //     Image: liveimg,
+  //   });
+  //   console.log(res, "server");
+  //   if (res.status === 201) {
+  //     toast.success("update done");
+  //     closeModal;
+  //     refetch();
+      
+  //   }
+
+  //   console.log(updateDetails);
+  //   document.getElementById("my_modal_5").close();
+  // };
+  const queryClient =  useQueryClient();
+
+
+  const mutation = useMutation(
+
+    async (updatedPost) => {
+      return await useaxiosapi.put(`/update-post/${updatedPost.id}`, updatedPost);
+    },
+    {
+      onSuccess: () => {
+        document.getElementById("my_modal_5").close();
+        queryClient.invalidateQueries(["mypost"]); // Ensures fresh data is fetched
+      },
+    }
+  );
+
+ 
+  
+  const updatePost = (id) => {
 
     if (postname.length <= 4) {
       toast.error("Post name must be 5 length");
@@ -149,33 +208,22 @@ function ManagePost() {
       toast.error("Title name must be 8 length upper");
       return;
     }
-    if (!(message.length > 20 &&  50>message.length )) {
-      toast.error("Message must be 20 word to under 50 word");
+    if (!(message.length > 20 && message.length < 50)) {
+      toast.error("Message must be 20 to 50 words");
       return;
     }
-
-
-
-
-
-
-    const res = await useaxiosapi.put(`/update-post/${id}`, {
+  
+    mutation.mutate({
+      id,
       PostName: postname,
       Category: category,
       Message: message,
       Image: liveimg,
     });
-    console.log(res, "server");
-    if (res.status === 201) {
-      toast.success("update done");
-      closeModal;
-      
-    }
-
-    console.log(updateDetails);
-    document.getElementById("my_modal_5").close();
   };
+  
   console.log(isopen);
+  console.log(liveimg);
 
 
   // relame time update and validation 
