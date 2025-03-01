@@ -136,6 +136,7 @@ function ManagePost() {
   };
 
   const updatePost = async (id) => {
+    // add real time update 
     // convet usequry
     const res = await useaxiosapi.put(`/update-post/${id}`, {
       PostName: postname,
@@ -155,8 +156,11 @@ function ManagePost() {
   };
   console.log(isopen);
 
+
+  // relame time update and validation 
+
   return (
-    <div className="border">
+    <div className="border bg-stone-200 min-h-screen">
       <p>manage post {myPost?.length}</p>
 
       {/* section take contet */}
@@ -167,19 +171,26 @@ function ManagePost() {
           <span className="loading loading-ring  w-20"></span>
         </div>
       ) : (
-        <section>
+        <section className="">
           {myPost.map((item, key) => (
-            <div className="border flex justify-center m-2" key={key}>
-              <div className="">
-                <img src={item?.Image} className="h-48" />
+            <div className="border flex justify-center m-2 p-3 " key={key}>
+              <div className="border p-2 bg-white shadow-xl rounded border-stone-300">
+                <img src={item.Image} className="h-48 w-full" />
 
                 <div>
+
+               <div className="flex flex-col gap-1 mt-2">
+               <p>{item.PostName}</p>
                   <p>{item.Title}</p>
                   <p>{item.Message}</p>
-                  <div className="flex border gap-2">
-                    <p>Like :{item.Like}</p>
-                    <p>UnLike :{item.UnLike}</p>
-                    <p>Follow Post : {item.FollowPost}</p>
+               </div>
+
+                  <div className="flex gap-2 mt-2">
+                    <p className="flex gap-2"> <i class="ri-thumb-up-line text-green-500"></i>{item.Like}</p>
+
+                    <p className="flex gap-2 justify-center items-center "><i class="ri-thumb-down-line"></i>{item.UnLike}</p>
+                    {/* follow post */}
+                    <p className="flex gap-2"><i class="ri-user-follow-line text-red-400 "></i>{item.FollowPost}</p>
                   </div>
 
                   {/* button */}
@@ -293,10 +304,10 @@ function ManagePost() {
 
                     {/* delete */}
                     <button
-                      className="md:px-12 px-10 md:py-2 py-1 border bg-red-600/40 hover:bg-green-500/40 border-white/30  cursor-pointer transition delay-150 duration-300 text-white font-semibold  ml-3 m-2 rounded"
+                      className="md:px-12 px-10 md:py-2 py-1 border bg-black hover:bg-red-600 border-white/30  cursor-pointer transition delay-150 duration-300 text-white font-semibold  ml-3 m-2 rounded flex gap-2 items-center text-xl"
                       onClick={() => deleteButton(item._id)}
                     >
-                      Delete
+                      <i class="ri-delete-bin-line"></i> Delete
                     </button>
                   </div>
                 </div>
