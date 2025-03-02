@@ -243,7 +243,7 @@ function ManagePost() {
       ) : (
         <section className="py-20">
           {myPost.map((item, key) => (
-            <div className="border flex justify-center m-2 p-3 " key={key}>
+            <div className=" flex justify-center m-2 p-3 " key={key}>
               <div className="border p-2 bg-white shadow-xl rounded border-stone-300">
                 <img src={item.Image} className="h-48 w-full" />
 

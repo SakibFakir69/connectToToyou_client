@@ -54,24 +54,9 @@ function AuthContext({ children }) {
         setloading(true);
         setuser(currentUser);
 
-        const email = currentUser?.email;
+        
 
-        useaxiosapi
-          .post("/login", {Email: email }, { withCredentials: true })
-          .then((res) => {
-            console.log(res);
-            localStorage.setItem("token", res.data?.token);
-
-            // get token
-            
-            
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      } else {
-        localStorage.removeItem("token");
-      }
+      } 
       setloading(false);
     });
 

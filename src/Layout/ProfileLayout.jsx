@@ -30,9 +30,15 @@ function ProfileLayout() {
         <section className='border grid grid-cols-12 '>
 
             <div className='col-span-4 border'>
-                <li>Info</li>
-                <li>Mange post</li>
-                <li>Setting</li>
+                
+                <li>Info | show noral info </li>
+
+                <li>show all post but do not show edit option </li>
+
+                <li>
+                    update profile 
+
+                </li>
 
             </div>
 
