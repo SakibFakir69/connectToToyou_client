@@ -236,12 +236,21 @@ function ManagePost() {
       {/* section take contet */}
       <ToastContainer/>
 
+
+     
+
       {isLoading ? (
         <div className="py-16  w-full flex justify-center">
           <span className="loading loading-ring  w-20"></span>
         </div>
       ) : (
-        <section className="py-20">
+        <div>
+          {
+            myPost.length===0 ? <div className="w-full ">
+              <p className="text-2xl font-semibold text-center py-20">No Data Founded</p>
+            </div>
+            :(<div>
+               <section className="py-20">
           {myPost.map((item, key) => (
             <div className=" flex justify-center m-2 p-3 " key={key}>
               <div className="border p-2 bg-white shadow-xl rounded border-stone-300">
@@ -385,6 +394,10 @@ function ManagePost() {
             </div>
           ))}
         </section>
+            </div>)
+          }
+        </div>
+        
       )}
     </div>
   );

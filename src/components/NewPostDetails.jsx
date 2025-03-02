@@ -89,15 +89,15 @@ function NewPostDetails() {
   }
 
   return (
-    <div className="w-full bg-color h-screen">
+    <div className="w-full bg-color min-h-screen">
       {/* div div  */}
       {/* div */}
 
       <section className=" w-11/12 flex flex-col mx-auto py-10 ">
 
         <section className="md:flex p-3 bg-white shadow-2xl border border-stone-300/50 rounded-md">
-          <div className="  flex-1 px-3 ">
-            <img src={Image} className="p-3" />
+          <div className="  flex-1 px-3 flex justify-center items-center md:w-10/11">
+            <img src={Image} className="p-3 rounded" />
           </div>
 
           <div className=" flex-1 ">
