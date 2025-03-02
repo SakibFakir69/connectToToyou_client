@@ -113,8 +113,8 @@ function NewPostDetails() {
               <p  className="font-semibold text-slate-600 flex items-center gap-2"> <CiCalendar className="text-violet-500 font-bold size-6"/>  {Date}</p>
             </div>
            
-            <div className=" flex gap-10 px-5">
-              {/* use  this and make post req */}
+            <div className="grid md:grid-cols-3 gap-2 ">
+              {/* use  this and make post req flex gap-10 px-5 */}
               <button onClick={likehandelButton} className="btn md:px-10 px-9 bg-blue-600 text-white">
                 Like
               </button>
