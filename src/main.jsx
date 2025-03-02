@@ -18,6 +18,7 @@ import Notifaction from "./components/Notifaction.jsx";
 
 
 
+
 import {
   useQuery,
   useMutation,
@@ -29,6 +30,9 @@ import ProfileLayout from "./Layout/ProfileLayout.jsx";
 import NewAccount from "./Homecomponents/NewAccount.jsx";
 import NewPostDetails from "./components/NewPostDetails.jsx";
 import ManagePost from "./components/ManagePost.jsx";
+import InfoPage from "./ProfilePage/InfoPage.jsx";
+import YourAllPost from "./ProfilePage/YourAllPost.jsx";
+import ProfileUpdate from "./ProfilePage/ProfileUpdate.jsx";
 
 const queryClient = new QueryClient();
 
@@ -96,6 +100,18 @@ const route = createBrowserRouter([
     path:'profilepage',
     element : <ProfileLayout/>,
     children:[
+      {
+        path:'/profilepage',
+        element:<InfoPage/>
+      },
+      {
+        path:'/profilepage/yourpost',
+        element:<YourAllPost/>
+      },
+      {
+        path:'/profilepage/profileupdate',
+        element:<ProfileUpdate/>
+      }
 
     ]
   }
