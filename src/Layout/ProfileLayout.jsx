@@ -1,54 +1,50 @@
 import React, { useState } from "react";
-import { NavLink, Outlet } from "react-router";
+import { NavLink,Outlet } from "react-router";
 
 function ProfileLayout() {
-  /// first show selected info
-
-  /// info  | outlet
-  // manage post | outlet
-  // other info  | outlet
-  //  sest inital page
-
-  /// (profile page )
-  /// info
-  // page
-
-  // page  -> info | outlet
-  // layout | outlet
-
-  const [isopen, setisopen] = useState(true);
+  const [isopen, setisopen] = useState(false);
 
   return (
-    <div>
-     
+    <div className="min-h-screen flex flex-col">
+      {/* Mobile Menu Button */}
+      <div className="md:hidden p-4 flex justify-between items-center bg-gray-100 shadow-md">
+        <h2 className="text-lg font-semibold">Profile</h2>
+        <i 
+          onClick={() => setisopen(true)} 
+          className="ri-menu-line text-2xl cursor-pointer"
+        ></i>
+      </div>
 
-      <section className="border grid grid-cols-12 ">
 
-       <div>
-       {isopen && (
-          <div className="bg-red-500 w-44 min-h-screen">
-            <div className="col-span-4 border">
-              <div className="flex flex-col gap-4 mt-10 px-4">
-                <div>show profile and name</div>
+      <div className="flex flex-1">
+        {/* Sidebar */}
+        <div 
+          className={`fixed md:relative top-0 left-0  bg-red-500 text-white w-60 transform transition-transform duration-300 ease-in-out min-h-screen
+            ${isopen ? "translate-x-0" : "-translate-x-64"} md:translate-x-0 md:w-64`}
+        >
+          <div className="flex flex-col gap-4 mt-10 px-4">
+            <div className="text-lg font-bold">Profile & Name</div>
 
-                <NavLink to={"/profilepage"}>Info</NavLink>
+            <NavLink to="/profilepage" className="hover:text-gray-300">Info</NavLink>
+            <NavLink to="/profilepage/yourpost" className="hover:text-gray-300">My Post</NavLink>
+            <NavLink to="/profilepage/profileupdate" className="hover:text-gray-300">Profile Update</NavLink>
+            <NavLink to="/" className="hover:text-gray-300">Home</NavLink>
 
-                <NavLink to={"/profilepage/yourpost"}>My Post</NavLink>
-                <NavLink to={"/profilepage/profileupdate"}>
-                  Profile Update
-                </NavLink>
-                <NavLink to={"/"}>Home</NavLink>
-                <button className="cursor-pointer btn" onClick={()=> setisopen(false)}>Close</button>
-              </div>
-            </div>
+            {/* Close Button on Small Screens */}
+            <button 
+              className="mt-4 bg-white text-red-500 px-3 py-1 rounded-md hover:bg-gray-200 md:hidden"
+              onClick={() => setisopen(false)}
+            >
+              Close
+            </button>
           </div>
-        )}
-       </div>
+        </div>
 
-        <div className="col-span-8 border">
+        {/* Main Content */}
+        <div className="flex-1 p-4">
           <Outlet />
         </div>
-      </section>
+      </div>
     </div>
   );
 }
