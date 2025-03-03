@@ -8,12 +8,12 @@ function InfoPage() {
   // set update option direct button
 
   return (
-    <div className="w-full">
+    <div className="w-full ">
       {/* last login date */}
 
-      <section className="flex justify-center flex-col items-center border">
+      <section className="flex justify-center flex-col items-center border gap-2">
 
-        <div className=" border">
+        <div className=" ">
           <img
             src={user?.photoURL || "not founed"}
             alt="Profile image"
@@ -22,9 +22,9 @@ function InfoPage() {
         </div>
 
         <div className="mt-5">
-          <p>{user?.displayName}</p>
+          <p className="text-xl font-semibold"> Name : {user?.displayName}</p>
 
-          <p>{user?.email}</p>
+          <p className="text-xl font-semibold">Email : {user?.email}</p>
         </div>
         <Link className="btn btn-primary" to={'/profilepage/profileupdate'}>Update Now</Link>
       </section>
