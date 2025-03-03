@@ -92,7 +92,7 @@ function NavbarPage() {
             user ? (<div className="flex gap-4 justify-center items-center">
 
               <Link to={'profilepage'}>
-              <img src={user.photoURL}/>
+              <img src={user.photoURL || "Not Founed"} className="h-10 w-10 rounded-full"/>
                 
               </Link>
 

@@ -33,6 +33,7 @@ import ManagePost from "./components/ManagePost.jsx";
 import InfoPage from "./ProfilePage/InfoPage.jsx";
 import YourAllPost from "./ProfilePage/YourAllPost.jsx";
 import ProfileUpdate from "./ProfilePage/ProfileUpdate.jsx";
+import Dashboard from "./ProfilePage/Dashboard.jsx";
 
 const queryClient = new QueryClient();
 
@@ -111,6 +112,10 @@ const route = createBrowserRouter([
       {
         path:'/profilepage/profileupdate',
         element:<ProfileUpdate/>
+      },
+      {
+        path:'/profilepage/dashboard',
+        element:<Dashboard/>
       }
 
     ]

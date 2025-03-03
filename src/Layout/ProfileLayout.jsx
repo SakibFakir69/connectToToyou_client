@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { NavLink,Outlet } from "react-router";
+import useAuthMangedHook from "../hook/useAuthMangedHook";
 
 function ProfileLayout() {
+
   const [isopen, setisopen] = useState(false);
+  const {user, loading } = useAuthMangedHook();
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -23,11 +26,19 @@ function ProfileLayout() {
             ${isopen ? "translate-x-0" : "-translate-x-64"} md:translate-x-0 md:w-64`}
         >
           <div className="flex flex-col gap-4 mt-10 px-4">
-            <div className="text-lg font-bold">Profile & Name</div>
+            <div className="text-lg font-bold">
+              <div className="border h-16 w-16 rounded-full">
+                <img src={user?.email || "Not founeded"}/>
+              </div>
+              <p>{user?.email}</p>
+
+
+            </div>
 
             <NavLink to="/profilepage" className="hover:text-gray-300">Info</NavLink>
             <NavLink to="/profilepage/yourpost" className="hover:text-gray-300">My Post</NavLink>
             <NavLink to="/profilepage/profileupdate" className="hover:text-gray-300">Profile Update</NavLink>
+            <NavLink to={'/profilepage/dashboard'}>Dashboard</NavLink>
             <NavLink to="/" className="hover:text-gray-300">Home</NavLink>
 
             {/* Close Button on Small Screens */}

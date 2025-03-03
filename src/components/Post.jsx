@@ -58,6 +58,10 @@ function Post() {
     setcurrentPage(num);
   };
 
+  // make a sort function aending and descing by date 
+
+  /// [...arr].sort((a,b)=> b.date-a.date)
+
   return (
     <div className="bg-color min-h-screen px-4 border w-full ">
 
