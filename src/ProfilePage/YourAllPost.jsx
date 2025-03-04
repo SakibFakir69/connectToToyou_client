@@ -23,10 +23,10 @@ function YourAllPost() {
     <div className="w-full">
       <h1>Total my post {yourPost.length}</h1>
 
-      <Link to={'/mangepost'} className="btn btn-primary fixed">Edit Post</Link>
+      <Link to={'/mangepost'} className="btn btn-primary  ">Edit Post</Link>
 
       <section className=" flex justify-center ">
-        <div className="w-4/5 border">
+        <div className="w-4/5 ">
           {/* content gosse here */}
 
           {isLoading ? (
@@ -43,7 +43,7 @@ function YourAllPost() {
                     {yourPost.map((item, key) => (
                       <div className=" flex justify-center m-2 p-3 " key={key}>
                         <div
-                          className="border p-2 bg-white shadow-xl rounded border-stone-300
+                          className=" p-2 bg-white shadow-xl rounded border-stone-300
 
                         hover:shadow-[0_0_10px_red] transition
                         
