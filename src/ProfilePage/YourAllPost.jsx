@@ -12,11 +12,11 @@ function YourAllPost() {
   const useaxiospai = usePublicHook(); 
 
 
-  const {data:yourPost=[] }=useQuery({
+  const {data:yourPost=[] ,isLoading}=useQuery({
 
     queryKey:['data',user?.email],
     queryFn:async()=>{
-      const res = await useaxiospai.get(`/manage-post/${uesr?.email}`)
+      const res = await useaxiospai.get(`/manage-post/${user?.email}`)
 
       return res.data;
     } 
@@ -26,7 +26,6 @@ function YourAllPost() {
   console.log(yourPost);
 
 
-  // click manage  go to edit  
 
 
 
@@ -35,8 +34,22 @@ function YourAllPost() {
       <h1>Total my post {yourPost.length}</h1>
 
 
-      <section className='border flex justify-center'>
-        <div className='w-6/12 border'>
+      <section className=' flex justify-center '>
+        <div className='w-6/12 '>
+        {/* content gosse here */}
+
+        {
+          isLoading ? (<div>
+            <span className="loading w-20"></span>
+
+          </div>):
+          (<div>
+
+          </div>)
+        }
+
+
+
 
         </div>
       </section>
