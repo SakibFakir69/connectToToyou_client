@@ -1,6 +1,8 @@
 import React from "react";
 import useAuthMangedHook from "../hook/useAuthMangedHook";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import usePublicHook from "../Api/usePublicHook";
+import { useMutation } from "@tanstack/react-query";
 
 function ProfileUpdate() {
   const { user } = useAuthMangedHook();
@@ -11,30 +13,44 @@ function ProfileUpdate() {
 
   // user can add number,location , add latest update date ,gender,fb
 
-  const updateProfile = (event) => {
+  const useaxiosapi = usePublicHook();
+
+  const updateprofileDatasendtoServer = useMutation({
+    mutationKey: ["data"],
+    mutationFn: async (form_info) => {
+      const { number, name, gender, fb, email, country } = form_info;
+
+      const res = await useaxiosapi.put(`/user-update/${user?.email}`, {
+        number,
+        name,
+        gender,
+        fb,
+        email,
+        country,
+      });
+      return res.data;
+    },
+    onSuccess: () => toast.success("Send done"),
+    onError: () => toast.error("falied to updated"),
+  });
+
+  const updateProfile = async (event) => {
     event.preventDefault();
 
     const info = new FormData(event.target);
     const form_info = Object.fromEntries(info);
     console.log(form_info);
 
-    const { number, name, gender, fb, email, country } = form_info;
-    /// send put req
-
-    
+    updateprofileDatasendtoServer.mutate(form_info);
+    // pass to mutation
 
 
-
-
-
-
-    
   };
 
   return (
     <div className="w-full bg-stone-200 min-h-screen">
       <h1>Update Form </h1>
-      <ToastContainer/>
+      <ToastContainer />
 
       <section className="w-full flex justify-center ">
         <form
