@@ -26,10 +26,25 @@ function YourAllPost() {
   console.log(yourPost);
 
 
+  // click manage  go to edit  
+
+
 
   return (
-    <div>
+    <div className='w-full'>
       <h1>Total my post {yourPost.length}</h1>
+
+
+      <section className='border flex justify-center'>
+        <div className='w-6/12 border'>
+
+        </div>
+      </section>
+
+
+
+
+
 
 
 

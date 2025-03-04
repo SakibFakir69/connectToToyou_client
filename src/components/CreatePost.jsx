@@ -12,12 +12,13 @@ function CreatePost() {
 
   const [error, seterror] = useState("");
   console.log(user);
+  const useaxiosPublic = usePublicHook();
 
   const createPost_button = async (event) => {
     try {
       event.preventDefault();
 
-      const useaxiosPublic = usePublicHook();
+   
 
       const data = new FormData(event.target);
       const data_form = Object.fromEntries(data);
@@ -35,17 +36,22 @@ function CreatePost() {
 
       console.log(res.data?.data.display_url);
 
-      if (name.length <= 4) {
-        seterror("Post name must be 5 length");
+      if (!name || name.length <= 4) {
+
+        toast.error("Post name must be 5 length");
         return;
       }
-      if (Title.length <= 8) {
-        seterror("Title name must be 8 length upper");
+      if ( !Title ||  Title.length <= 8) {
+        toast.error("Title name must be 8 length upper");
         return;
       }
-      if (Message.length <= 20) {
-        seterror("Message must be 20 length upper");
+      if ( !Message  ||Message.length <= 20) {
+        toast.error("Message must be 20 length upper");
         return;
+      }
+      if(!res.data?.data.display_url){
+        toast.error("pleaes upload image");
+        return ;
       }
 
       // Get the current date in DD-MM-YYYY format
@@ -134,9 +140,10 @@ function CreatePost() {
           <h2 class="mb-4 text-xl font-semibold text-black">
             Create Your post
           </h2>
-          <ToastContainer />
+          <ToastContainer/>
 
           <form onSubmit={createPost_button}>
+
             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
               <div class="sm:col-span-2">
                 <label for="name" class="block mb-2 text-sm font-medium">

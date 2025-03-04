@@ -45,8 +45,8 @@ function NavbarPage() {
         <NavLink to={"/mangepost"}>Mange Post</NavLink>
       </li>
 
-      <li className="md:invisible">
-        <NavLink to={'/profilepage'}>Profile</NavLink>
+      <li className="invisible">
+        <NavLink to={'profilepage'}>Profile</NavLink>
       </li>
     </>
   );
@@ -91,7 +91,7 @@ function NavbarPage() {
           {
             user ? (<div className="flex gap-4 justify-center items-center">
 
-              <Link to={'profilepage'}>
+              <Link to={'/profilepage'}>
               <img src={user.photoURL || "Not Founed"} className="h-10 w-10 rounded-full"/>
                 
               </Link>
