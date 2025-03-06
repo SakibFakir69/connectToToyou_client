@@ -1,15 +1,29 @@
 
 
 
+import { useQuery } from '@tanstack/react-query'
 import React from 'react'
+import useAuthMangedHook from '../hook/useAuthMangedHook'
 
 function Dashboard() {
+
+  let {user}=useAuthMangedHook();
+
+  const {data:dashBoardData=[],isLoading}=useQuery({
+    queryKey:['data'],
+    queryFn: () =>{
+
+    }
+    
+
+  })
+  
+
   return (
     <div>
+      {/* show all data using grap */}
 
-        <p>show uesr all most data like follow post, like unlike </p>
-        <p>Per NewPost</p>
-
+       
 
     </div>
   )

@@ -71,6 +71,7 @@ function ProfileUpdate() {
               required
               placeholder="Enter your Name"
               className=" py-2 rounded text-center   focus:shadow-[0_0_10px_red] "
+              defaultValue={user?.displayName}
             />
           </div>
 
@@ -84,6 +85,7 @@ function ProfileUpdate() {
               required
               placeholder="Enter your Enter your email"
               className=" py-2 rounded text-center   focus:shadow-[0_0_10px_red]"
+              defaultValue={user?.email}
             />
           </div>
           {/* number */}
