@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { NavLink, Outlet } from "react-router";
 import useAuthMangedHook from "../hook/useAuthMangedHook";
-
+import { IoInformationCircleOutline } from "react-icons/io5";
+import { MdOutlinePostAdd } from "react-icons/md";
+import { GrDocumentUpdate } from "react-icons/gr";
+import { IoMdHome } from "react-icons/io";
+import { MdOutlineDashboardCustomize } from "react-icons/md";
 function ProfileLayout() {
   const [isopen, setisopen] = useState(false);
   const { user, loading } = useAuthMangedHook();
@@ -17,10 +21,10 @@ function ProfileLayout() {
         ></i>
       </div>
 
-      <div className="flex flex-1">
+      <div className="flex flex-1 ">
         {/* Sidebar */}
         <div
-          className={`fixed md:relative top-0 left-0  bg-red-500 text-white w-60 transform transition-transform duration-300 ease-in-out min-h-screen
+          className={`fixed md:relative top-0 left-0  bg-red-500 text-white w-60 transform transition-transform  duration-300 ease-in-out min-h-screen
             ${
               isopen ? "translate-x-0" : "-translate-x-64"
             } md:translate-x-0 md:w-64`}
@@ -36,21 +40,30 @@ function ProfileLayout() {
               <p>{user?.displayName}</p>
             </div>
 
-            <NavLink to="/profilepage" className="hover:text-gray-300">
-              Info
+            <NavLink to="/profilepage" className="hover:text-gray-300 flex gap-1 items-center sm:text-xl">
+             <IoInformationCircleOutline className="text-green-500 font-semibold"/> Info
             </NavLink>
-            <NavLink to="/profilepage/yourpost" className="hover:text-gray-300">
-              My Post
+
+            <NavLink to="/profilepage/yourpost" className="hover:text-gray-300 flex gap-1 items-center sm:text-xl">
+            <MdOutlinePostAdd className="text-yellow-400 font-semibold"/>  My Post
             </NavLink>
+
             <NavLink
               to="/profilepage/profileupdate"
-              className="hover:text-gray-300"
+              className="hover:text-gray-300 flex gap-1 items-center md:text-xl"
             >
-              Profile Update
+              <GrDocumentUpdate className="text-violet-700"/>Profile Update
             </NavLink>
-            <NavLink to={"/profilepage/dashboard"}>Dashboard</NavLink>
-            <NavLink to="/" className="hover:text-gray-300">
-              Home
+
+            <NavLink
+
+            className={'flex gap-1 items-center sm:text-xl'}
+            
+            to={"/profilepage/dashboard"}> <MdOutlineDashboardCustomize className="text-teal-400"/>Dashboard</NavLink>
+
+
+            <NavLink to="/" className="hover:text-gray-300 flex gap-1 items-center sm:text-xl">
+             <IoMdHome className="text-black"/> Home
             </NavLink>
 
             {/* Close Button on Small Screens */}

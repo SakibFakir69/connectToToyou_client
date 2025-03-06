@@ -57,9 +57,11 @@ function Dashboard() {
   return (
     <div>
       <ResponsiveContainer width="100%" height={500}>
+      
+
         <ComposedChart
           data={cleanedData}
-          className="border"
+    
           margin={{
             top: 20,
             right: 20,
