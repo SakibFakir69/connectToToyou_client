@@ -55,8 +55,9 @@ function Dashboard() {
   }
 
   return (
-    <div>
-      <ResponsiveContainer width="100%" height={500}>
+    <div className="absolute overflow-hidden   -z-50 max-wd-full w-full">
+
+      <ResponsiveContainer width="80%" height={500} >
       
 
         <ComposedChart

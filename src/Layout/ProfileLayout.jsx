@@ -13,21 +13,21 @@ function ProfileLayout() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Mobile Menu Button */}
-      <div className="md:hidden p-4 flex justify-between items-center bg-gray-100 shadow-md">
-        <h2 className="text-lg font-semibold">Profile</h2>
+      <div className="md:hidden p-4 flex justify-between items-center bg-violet-500 shadow-md">
+        <h2 className="text-lg font-semibold text-white hover:text-stone-200">Profile</h2>
         <i
           onClick={() => setisopen(true)}
-          className="ri-menu-line text-2xl cursor-pointer"
+          className="ri-menu-line text-2xl cursor-pointer text-white"
         ></i>
       </div>
 
-      <div className="flex flex-1 ">
+      <div className="flex flex-1 z-50  ">
         {/* Sidebar */}
         <div
-          className={`fixed md:relative top-0 left-0  bg-red-500 text-white w-60 transform transition-transform  duration-300 ease-in-out min-h-screen
+          className={`fixed md:relative top-0 left-0  bg-red-500 text-white w-60 transform transition-transform   duration-300 ease-in-out min-h-screen
             ${
               isopen ? "translate-x-0" : "-translate-x-64"
-            } md:translate-x-0 md:w-64`}
+            } md:translate-x-0 md:w-64 overflow-y-auto`}
         >
           <div className="flex flex-col gap-4 mt-10 px-4">
             <div className="text-lg font-bold">
