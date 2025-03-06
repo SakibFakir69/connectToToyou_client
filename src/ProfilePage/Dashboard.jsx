@@ -41,6 +41,19 @@ function Dashboard() {
     );
   });
 
+
+  if(isLoading)
+  {
+    return <div>
+      <div className="py-20 text-center">
+        
+        <span className="loading loading-ring w-20"></span>
+        <p>Dashboard Loading</p>
+
+      </div>
+    </div>
+  }
+
   return (
     <div>
       <ResponsiveContainer width="100%" height={500}>
