@@ -1,10 +1,17 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
 import useAuthMangedHook from "../hook/useAuthMangedHook";
+import LoginUser from "../hook/LoginUser";
 
 function NavbarPage() {
   const { setloading, setuser ,handel_log_out,user} = useAuthMangedHook();
   console.log(user);
+  const {dataOfuser, isLoading} = LoginUser();
+  console.log(dataOfuser);
+  const {Image} = dataOfuser;
+
+
+
 
 
   const hadel_log_out_button = ()=>{
@@ -92,7 +99,7 @@ function NavbarPage() {
             user ? (<div className="flex gap-4 justify-center items-center">
 
               <Link to={'/profilepage'}>
-              <img src={user.photoURL || "Not Founed"} className="h-10 w-10 rounded-full"/>
+              <img src={Image || "Not Founed"} className="h-10 w-10 rounded-full"/>
                 
               </Link>
 
