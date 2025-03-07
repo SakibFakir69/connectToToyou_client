@@ -35,12 +35,12 @@ function YourAllPost() {
             </div>
           ) : (
             <div>
-              {yourPost.length === 0 ? (
+              {yourPost?.length === 0 ? (
                 <div>No Data Founeded</div>
               ) : (
                 <div className="">
                   <section className="w-10/11">
-                    {yourPost.map((item, key) => (
+                    {yourPost?.map((item, key) => (
                       <div className=" flex justify-center m-2 p-3 " key={key}>
                         <div
                           className=" p-2 bg-white shadow-xl rounded border-stone-300

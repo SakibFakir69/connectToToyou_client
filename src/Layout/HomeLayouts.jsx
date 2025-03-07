@@ -9,6 +9,7 @@ import NewAccount from '../Homecomponents/NewAccount'
 import AboutNow from '../Homecomponents/AboutNow'
 import NewsLetter from '../components/NewsLetter'
 import Footer from '../Homecomponents/Footer'
+import Faq from '../Homecomponents/Faq'
 
 
 function HomeLayouts() {
@@ -24,6 +25,7 @@ function HomeLayouts() {
      
        <NewAccount/>
        <AboutNow/>
+       <Faq/>
 
        <NewsLetter/>
        <Footer/>

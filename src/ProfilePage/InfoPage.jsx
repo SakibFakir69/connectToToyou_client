@@ -43,7 +43,10 @@ function InfoPage() {
           <p>Number:{number}</p>
           <p>Country:{country}</p>
           <p>Gender:{gender}</p>
-          <p>Fb : {fb}</p>
+         <a href={fb}>
+         <i class="ri-facebook-box-fill"></i>
+
+         </a>
         </div>
         <Link className="btn btn-primary" to={"/profilepage/profileupdate"}>
           Update Now
