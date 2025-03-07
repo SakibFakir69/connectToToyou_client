@@ -21,15 +21,14 @@ function InfoPage() {
     },
   });
   console.log(dataOfuser);
-
-  const { country, fb, gender, number ,Image,Name} = dataOfuser;
+  const { country, fb, gender, number, Name ,Image} = dataOfuser;
 
   return (
     <div className="w-full ">
       {/* last login date */}
 
       <section className="flex justify-center flex-col items-center border gap-2">
-        <div >
+        <div>
           <img
             src={Image || "not founed"}
             alt="Profile image"
