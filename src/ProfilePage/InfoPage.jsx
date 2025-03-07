@@ -9,46 +9,46 @@ function InfoPage() {
   // show user name , email , number , like , follwer ,
   // set update option direct button
   const useaxiosapi = usePublicHook();
-  console.log(user?.email)
+  console.log(user?.email);
 
-  const {data:dataOfuser,isLoading}=useQuery({
+  const { data: dataOfuser, isLoading } = useQuery({
+    queryKey: ["data", user?.email],
 
-    queryKey:['data',user?.email],
-
-    queryFn: async ()=>{
-      const res = await useaxiosapi.get(`/find-userBy/${user?.email}`)
+    queryFn: async () => {
+      const res = await useaxiosapi.get(`/find-userBy/${user?.email}`);
       console.log(res);
       return res.data;
-    }
-  })
+    },
+  });
   console.log(dataOfuser);
 
-
+  const { country, fb, gender, number ,Image,Name} = dataOfuser;
 
   return (
     <div className="w-full ">
       {/* last login date */}
 
-
-
-
       <section className="flex justify-center flex-col items-center border gap-2">
-
-        <div className=" ">
+        <div >
           <img
-            src={user?.photoURL || "not founed"}
+            src={Image || "not founed"}
             alt="Profile image"
             className="flex justify-center items-center mx-auto p-4 w-full rounded-full"
           />
         </div>
 
         <div className="mt-5">
-          <p className="text-xl font-semibold"> Name : {user?.displayName}</p>
+          <p className="text-xl font-semibold"> Name : {Name}</p>
 
           <p className="text-xl font-semibold">Email : {user?.email}</p>
-
+          <p>Number:{number}</p>
+          <p>Country:{country}</p>
+          <p>Gender:{gender}</p>
+          <p>Fb : {fb}</p>
         </div>
-        <Link className="btn btn-primary" to={'/profilepage/profileupdate'}>Update Now</Link>
+        <Link className="btn btn-primary" to={"/profilepage/profileupdate"}>
+          Update Now
+        </Link>
       </section>
     </div>
   );

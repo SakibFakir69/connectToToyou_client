@@ -7,21 +7,21 @@ import { useMutation } from "@tanstack/react-query";
 function ProfileUpdate() {
   const { user } = useAuthMangedHook();
 
-  /// add locatin ,
-  /// add link socail media
-  ///
 
-  // user can add number,location , add latest update date ,gender,fb
 
 
 
 
   const useaxiosapi = usePublicHook();
 
+
   const updateprofileDatasendtoServer = useMutation({
+
     mutationKey: ["data"],
+
     mutationFn: async (form_info) => {
-      const { number, name, gender, fb, email, country } = form_info;
+
+      const { number, name, gender, fb, country } = form_info;
 
       const res = await useaxiosapi.put(`/user-update/${user?.email}`, {
         number,
@@ -30,30 +30,33 @@ function ProfileUpdate() {
         fb,
         country,
       });
+      console.log(res);
+
       return res.data;
+
     },
 
     onSuccess: () => toast.success("Send done"),
-    onError: () => toast.error("falied to updated"),
+   
   });
 
 
-  const updateNameIntoFirebase = async (name)=>{
-    try{
-      if(user)
-      {
-        await user.updateProfile({
-          displayName:name
-        })
-        toast.success("Name updated")
-      }
-    }catch(error)
-    {
-      console.log(error.name);
-      toast.error(error.name)
-    }
+  // const updateNameIntoFirebase = async (name)=>{
+  //   try{
+  //     if(user)
+  //     {
+  //       await user.updateProfile({
+  //         displayName:name
+  //       })
+  //       toast.success("Name updated")
+  //     }
+  //   }catch(error)
+  //   {
+  //     console.log(error.name ,"find error name");
 
-  }
+  //   }
+
+  // }
 
   const updateProfile = async (event) => {
     event.preventDefault();
@@ -64,7 +67,7 @@ function ProfileUpdate() {
 
     updateprofileDatasendtoServer.mutate(form_info);
     // pass to mutation
-    updateNameIntoFirebase(form_info.name)
+    // updateNameIntoFirebase(form_info.name)
 
 
   };
