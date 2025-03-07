@@ -6,9 +6,13 @@ import { MdOutlinePostAdd } from "react-icons/md";
 import { GrDocumentUpdate } from "react-icons/gr";
 import { IoMdHome } from "react-icons/io";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
+import LoginUser from "../hook/LoginUser";
 function ProfileLayout() {
   const [isopen, setisopen] = useState(false);
-  const { user, loading } = useAuthMangedHook();
+  
+  const {dataOfuser, isLoading} = LoginUser();
+  console.log(dataOfuser);
+  const {Image,Name} = dataOfuser;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -31,13 +35,13 @@ function ProfileLayout() {
         >
           <div className="flex flex-col gap-4 mt-10 px-4">
             <div className="text-lg font-bold">
-              <div className="border h-16 w-16 rounded-full">
+              <div className="border h-20 w-20 rounded-full">
                 <img
-                  src={user?.photoURL || "Not founeded"}
-                  className="rounded-full"
+                  src={Image || "Not founeded"}
+                  className="rounded-full h-full w-full"
                 />
               </div>
-              <p>{user?.displayName}</p>
+              <p>{Name}</p>
             </div>
 
             <NavLink to="/profilepage" className="hover:text-gray-300 flex gap-1 items-center sm:text-xl">
