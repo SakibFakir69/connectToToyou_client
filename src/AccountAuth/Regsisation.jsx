@@ -43,6 +43,9 @@ function Regsisation() {
             photoURL: user.photoURL,
             Follow:0,
             Post:0,
+            country:'',
+            fb:'',
+            gender:'', number:'',
           }
 
           useaxiosPublic
@@ -160,6 +163,9 @@ function Regsisation() {
         display_url,
         Follow:0,
         Post:0,
+        country:'',
+        fb:'',
+        gender:'', number:'',
       };
 
       userReg_Create_email_Password(email, password)

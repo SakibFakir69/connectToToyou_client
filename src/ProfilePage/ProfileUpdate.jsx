@@ -13,6 +13,9 @@ function ProfileUpdate() {
 
   // user can add number,location , add latest update date ,gender,fb
 
+
+
+
   const useaxiosapi = usePublicHook();
 
   const updateprofileDatasendtoServer = useMutation({
@@ -25,14 +28,32 @@ function ProfileUpdate() {
         name,
         gender,
         fb,
-        email,
         country,
       });
       return res.data;
     },
+
     onSuccess: () => toast.success("Send done"),
     onError: () => toast.error("falied to updated"),
   });
+
+
+  const updateNameIntoFirebase = async (name)=>{
+    try{
+      if(user)
+      {
+        await user.updateProfile({
+          displayName:name
+        })
+        toast.success("Name updated")
+      }
+    }catch(error)
+    {
+      console.log(error.name);
+      toast.error(error.name)
+    }
+
+  }
 
   const updateProfile = async (event) => {
     event.preventDefault();
@@ -43,6 +64,7 @@ function ProfileUpdate() {
 
     updateprofileDatasendtoServer.mutate(form_info);
     // pass to mutation
+    updateNameIntoFirebase(form_info.name)
 
 
   };
@@ -83,6 +105,7 @@ function ProfileUpdate() {
               type="email"
               name="email"
               required
+              readOnly
               placeholder="Enter your Enter your email"
               className=" py-2 rounded text-center   focus:shadow-[0_0_10px_red]"
               defaultValue={user?.email}
