@@ -2,12 +2,13 @@ import React from "react";
 
 function Faq() {
   return (
-    <div className="px-2 mb-6">
-      <h2>Faq</h2>
+    <div className="px-2 mb-6 bg-stone-200   flex flex-col gap-1 p-2">
+  
 
       <div className="collapse collapse-arrow bg-white border border-base-300 shadow-2xl
       
-      hover:shadow[0_0__15px_red">
+      hover:shadow[0_0__15px_red] ">
+
         <input type="radio" name="my-accordion-2" defaultChecked />
         <div className="collapse-title font-semibold">
         What type of news can I share?
@@ -31,10 +32,10 @@ function Faq() {
       <div className="collapse collapse-arrow bg-white border border-base-300 shadow-2xl">
         <input type="radio" name="my-accordion-2" />
         <div className="collapse-title font-semibold">
-        Is there a character limit for submitting news?
+        Can I share news from social media platforms?
         </div>
         <div className="collapse-content text-sm">
-        Yes, each news post must be concise, with a maximum character limit of 50 characters. This ensures that the news remains brief and easy to read.
+        Yes, you can share snippets from social media posts as long as you provide a proper source and follow our guidelines.
         </div>
 
 
@@ -53,10 +54,10 @@ function Faq() {
       <div className="collapse collapse-arrow bg-white border border-base-300 shadow-2xl">
         <input type="radio" name="my-accordion-2" />
         <div className="collapse-title font-semibold">
-        Is there a character limit for submitting news?
+        Can I comment on or like other users' posts?
         </div>
         <div className="collapse-content text-sm">
-        Yes, each news post must be concise, with a maximum character limit of 500 characters. This ensures that the news remains brief and easy to read.
+        Yes, you can comment on and like other users’ news posts to engage in discussions.
         </div>
 
 

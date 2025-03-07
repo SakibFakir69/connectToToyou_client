@@ -14,7 +14,7 @@ import Faq from '../Homecomponents/Faq'
 
 function HomeLayouts() {
   return (
-    <div className='mt-16 bg-color'>
+    <div className='mt-16 bg-color gap-1 flex flex-col'>
 
       {/* add animtion home layouts */}
         

@@ -59,7 +59,7 @@ function NewsLetter() {
   }
 
   return (
-    <div className='w-full '>
+    <div className='w-full bg-stone-200 p-2'>
 
       {/* add background photo */}
     
@@ -87,7 +87,7 @@ function NewsLetter() {
             type="text"
             name="name"
             placeholder="Enter your name"
-            className="text-center rounded md:py-3 px-12 py-2 border border-amber-50 focus:bg-black focus:text-white focus:text-xl"
+            className="text-left rounded md:py-3 px-12 py-2 border border-amber-50 focus:bg-black focus:text-white focus:text-xl"
           />
 
           {/* <input type="text" /> */}
@@ -95,7 +95,7 @@ function NewsLetter() {
             type="email"
             name="email"
             placeholder="Enter your email"
-            className="text-center rounded md:py-3 py-2 border border-white text-black focus:text-xl focus:bg-black focus:text-white focus:font-semibold "
+            className="text-left px-12 rounded md:py-3 py-2 border border-white text-black focus:text-xl focus:bg-black focus:text-white focus:font-semibold "
           />
          </div>
           <div className="flex justify-center w-full">

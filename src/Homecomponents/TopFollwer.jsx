@@ -22,7 +22,7 @@ function TopFollwer() {
   console.log(TopFollwer,"top follwer");
 
   return (
-    <div className=" p-4">
+    <div className=" p-4 bg-red-400">
 
 
       <section

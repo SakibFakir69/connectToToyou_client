@@ -21,7 +21,8 @@ function NewAccount() {
   console.log(NewAccount);
 
   return (
-    <div className="p-4">
+    <div className="p-4 
+    bg-red-400">
   
       <Swiper
         // install Swiper modules

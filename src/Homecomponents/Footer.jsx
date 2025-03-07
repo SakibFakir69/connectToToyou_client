@@ -7,19 +7,15 @@ function Footer() {
     <div>
       <footer className="bg-white shadow-md rounded-xl w-full p-3 md:p-4 relative">
         <div className="w-full flex items-center justify-center pt-[30px] flex-col gap-[20px] pb-[130px]">
-          <img
-            src="https://i.ibb.co/ZHYQ04D/footer-logo.png"
-            alt="logo"
-            className="w-[150px]"
-          />
+          
 
           <p className="text-[0.9rem] text-center sm:text-start text-gray-600">
             A short news platform 
           </p>
 
-          <button className="py-3 px-6 rounded-full bg-[#3B9DF8] text-white">
+          <a href="https://www.linkedin.com/in/sakib-fakir-183923295/" target="_blank" className="py-3 px-6 rounded-full bg-[#3B9DF8] text-white">
             Contact Us
-          </button>
+          </a>
 
           <div className="flex gap-[15px] text-black mt-4">
             <a className="text-[1.3rem] p-1.5 cursor-pointer rounded-full bg-white text-[#424242] shadow-md">
