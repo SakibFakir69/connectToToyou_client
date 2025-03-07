@@ -32,20 +32,23 @@ function ShowNewpostData({ data }) {
   return (
     <div className="border m-2 grid bg-white rounded border-stone-500/20 shadow-xl hover:shadow-green-200 delay-150 hover:shadow-2xl">
 
-      <div className="w-full md:min-w-[50%] md:max-w-[80%] relative boxShadow rounded-xl flex-col sm:flex gap-[20px] p-4  lg:h-[490px] md:h-[480px]">
+      <div className="w-full relative boxShadow rounded-xl flex-col sm:flex gap-[20px] p-4  lg:h-[490px] md:h-[480px] ">
+        {/* md:min-w-[50%] md:max-w-[80%]  */}
 
-        <div className="w-full md:h-[300px] h-[250px]  flex justify-center items-center mx-auto px-5">
+        <div className="w-full md:h-[390px] h-[260px]  flex justify-center items-center mx-auto px-5 ">
 
           <img
             src={Image}
             alt="image"
-            className=" object-contain  h-full w-full flex justify-center items-center mx-auto  "
+            className="object-contain   h-full w-full flex justify-center items-center mx-auto  "
           />
         </div>
 
-        <div className="w-full mt-5 sm:mt-0">
+        <div className="w-full mt-5 sm:mt-0  flex flex-col gap-0">
+
           <div className="flex sm:items-center justify-between w-full">
-            <div className="flex sm:flex-row flex-col sm:items-center sm:gap-[5px]">
+            <div className=" ">
+
               <h1 className="text-[1.2rem] font-bold">{PostName}</h1>
 
               <span className="text-gray-400"> {Date}</span>
@@ -54,9 +57,10 @@ function ShowNewpostData({ data }) {
            
           </div>
 
-          <p className="text-gray-600 mt-3 text-[0.9rem]   relative mb-6 ">
+          <p className="text-gray-600 mt-1 text-[0.9rem]   relative mb-2 w-11/12 ">
             {Message}
           </p>
+          <p>{Category}</p>
 
           {/* here user can share there message */}
           {/* make a pool like and like  */}
