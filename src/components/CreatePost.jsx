@@ -46,13 +46,21 @@ function CreatePost() {
         toast.error("Enter your Message");
         return;
       }
-      if (Message.length < 20) {
+      if (Message.length < 20 || Message.length>50) {
         setbutton(true);
-        toast.error("Message must be  20  characters");
+        toast.error("Message must be under 20 to 50  characters");
         return;
       }
-      if (Message.length > 50) {
-        setbutton(true)("Message must be between 20 and 50 characters");
+      if(!Category)
+      {
+        setbutton(true);
+        toast.error("Enter your category");
+        return ;
+      }
+      
+      if (Message.length>50) {
+        setbutton(true)
+        toast.error("Message must be between 20 and 50 characters");
         return;
       }
 
@@ -129,7 +137,7 @@ function CreatePost() {
     } catch (error) {
       console.log(error);
     } finally {
-      setbutton(false);
+      setbutton(true);
     }
   };
 
@@ -182,7 +190,7 @@ function CreatePost() {
                   name="Category"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 >
-                  <option selected="">Select category</option>
+                  
                   <option value="Politics">Politics</option>
                   <option value="Movi">Movie</option>
                   <option value="News">News</option>
