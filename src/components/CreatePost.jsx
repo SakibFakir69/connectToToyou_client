@@ -8,41 +8,56 @@ const img_bb_api_key = import.meta.env.VITE_YOUR_CLIENT_API_KEY;
 const uplog_img = `https://api.imgbb.com/1/upload?key=${img_bb_api_key}`;
 
 function CreatePost() {
+
+  
   const { user, loading } = useAuthMangedHook();
 
   const [error, seterror] = useState("");
   console.log(user);
   const useaxiosPublic = usePublicHook();
 
+  const [button, setbutton] = useState(true);
+
   const createPost_button = async (event) => {
+
+    setbutton(false)
+
     try {
       event.preventDefault();
-
-   
 
       const data = new FormData(event.target);
       const data_form = Object.fromEntries(data);
       console.log(data_form);
       const { name, Title, Message, Category } = data_form;
 
-      
-
       if (!name || name.length <= 4) {
+        setbutton(true);
 
         toast.error("Post name must be 5 length");
         return;
       }
-      if ( !Title ||  Title.length <= 8) {
+      if (!Title || Title.length <= 8) {
+        setbutton(true);
         toast.error("Title name must be 8 length upper");
         return;
       }
-      if ( !Message  || (Message.length < 20  && Message>50 )) {
-        toast.error("Message must be between 20 and 50 characters");
+      if (!Message) {
+        setbutton(true);
+        toast.error("Enter your Message");
+        return;
+      }
+      if (Message.length < 20) {
+        setbutton(true);
+        toast.error("Message must be  20  characters");
+        return;
+      }
+      if (Message.length > 50) {
+        setbutton(true)("Message must be between 20 and 50 characters");
         return;
       }
 
       const img = new FormData();
-      
+
       img.append("image", data.get("image"));
 
       const res = await useaxiosPublic.post(uplog_img, img, {
@@ -53,9 +68,10 @@ function CreatePost() {
 
       console.log(res.data?.data.display_url);
 
-      if(!res.data?.data.display_url){
+      if (!res.data?.data.display_url) {
+        setbutton(true);
         toast.error("pleaes upload image");
-        return ;
+        return;
       }
 
       // Get the current date in DD-MM-YYYY format
@@ -76,55 +92,34 @@ function CreatePost() {
         Date: postDate,
         Name: user?.displayName,
         Image: res.data?.data.display_url,
-        UnLike:0,
-        FollowPost:0,
-        Follow:0,
+        UnLike: 0,
+        FollowPost: 0,
+        Follow: 0,
       };
-      
-      console.log(postUser);
 
+      console.log(postUser);
 
       useaxiosPublic
         .post("/create-post", postUser)
         .then((result) => {
           if (result.status == 200) {
-            
-            useaxiosPublic.put(`/count-post/${user?.email}`)
-            .then((res)=>{
-              console.log("post udated")
-            })
-            .catch(error=>{
-              console.log("error on post")
-            })
+            useaxiosPublic
+              .put(`/count-post/${user?.email}`)
+              .then((res) => {
+                setbutton(true);
 
-
-
+                console.log("post udated");
+              })
+              .catch((error) => {
+                console.log("error on post");
+              });
 
             toast.success("Your post created");
 
             seterror("");
 
             event.target.reset();
-
-
-
-
-
-
-
-
-
-
-
-
           } else {
-
-
-
-
-
-
-
             toast.error("your post created failed");
           }
         })
@@ -133,9 +128,10 @@ function CreatePost() {
         });
     } catch (error) {
       console.log(error);
+    } finally {
+      setbutton(false);
     }
   };
-
 
   return (
     <div className="mt-16">
@@ -144,10 +140,9 @@ function CreatePost() {
           <h2 class="mb-4 text-xl font-semibold text-black">
             Create Your post
           </h2>
-          <ToastContainer/>
+          <ToastContainer />
 
           <form onSubmit={createPost_button}>
-
             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
               <div class="sm:col-span-2">
                 <label for="name" class="block mb-2 text-sm font-medium">
@@ -181,7 +176,7 @@ function CreatePost() {
                 <label for="category" class="block mb-2 text-sm font-medium">
                   Category
                 </label>
-                
+
                 <select
                   id="category"
                   name="Category"
@@ -235,7 +230,7 @@ function CreatePost() {
                 
                 "
               >
-                Submit
+                {button ? "Submit" : "Loading.."}
               </button>
             </div>
           </form>
