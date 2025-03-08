@@ -25,16 +25,7 @@ function CreatePost() {
       console.log(data_form);
       const { name, Title, Message, Category } = data_form;
 
-      const img = new FormData();
-      img.append("image", data.get("image"));
-
-      const res = await useaxiosPublic.post(uplog_img, img, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      console.log(res.data?.data.display_url);
+      
 
       if (!name || name.length <= 4) {
 
@@ -45,10 +36,23 @@ function CreatePost() {
         toast.error("Title name must be 8 length upper");
         return;
       }
-      if ( !Message  ||Message.length <= 20) {
-        toast.error("Message must be 20 length upper");
+      if ( !Message  || (Message.length < 20  && Message>50 )) {
+        toast.error("Message must be between 20 and 50 characters");
         return;
       }
+
+      const img = new FormData();
+      
+      img.append("image", data.get("image"));
+
+      const res = await useaxiosPublic.post(uplog_img, img, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      console.log(res.data?.data.display_url);
+
       if(!res.data?.data.display_url){
         toast.error("pleaes upload image");
         return ;
