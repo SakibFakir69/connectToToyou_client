@@ -59,7 +59,7 @@ function NewsLetter() {
   }
 
   return (
-    <div className='w-full bg-stone-200 p-2'>
+    <div className='w-full bg-stone-300 p-2'>
 
       {/* add background photo */}
     

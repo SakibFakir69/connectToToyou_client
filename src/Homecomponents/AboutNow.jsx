@@ -8,7 +8,7 @@ import mission from "../../public/Business mission-rafiki.png";
 
 function AboutNow() {
   return (
-    <article className="w-full flex flex-col justify-center items-center bg-stone-200">
+    <article className="w-full flex flex-col justify-center items-center bg-stone-300">
       {/* take content  */}
       {/* take group */}
 

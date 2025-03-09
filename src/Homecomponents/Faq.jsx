@@ -2,7 +2,7 @@ import React from "react";
 
 function Faq() {
   return (
-    <div className="px-2 mb-6 bg-stone-200   flex flex-col gap-1 p-2">
+    <div className="px-2 mb-6 bg-stone-300   flex flex-col gap-1 p-2">
   
 
       <div className="collapse collapse-arrow bg-white border border-base-300 shadow-2xl

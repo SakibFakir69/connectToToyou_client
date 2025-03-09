@@ -18,7 +18,7 @@ function TrendingPost() {
   const { isLoading, trendingPost } = UseTrendingPost();
 
   return (
-    <div className="p-6 bg-red-400">
+    <div className="p-6 bg-stone-300">
       {/* find trending post by top like post  */}
       {/* 10 data show here */}
 
@@ -54,11 +54,11 @@ function TrendingPost() {
 
           {trendingPost.map((item, key) => (
             <SwiperSlide
-              className="bg-white  text-center shadow-2xl w-full "
+              className=" text-center  bg-white   "
               key={key}
             >
 
-              <div className=" w-full flex flex-col items-center justify-center p-4 ">
+              <div className=" w-full flex flex-col items-center justify-center p-4  rounded  py-10 md:py-14">
              
                 <h3>{item.PostName}</h3>
                 <h3>{item.Title}</h3>
@@ -66,10 +66,24 @@ function TrendingPost() {
                 {/* follow , like , unlike */}
 
                 <div className="text-center flex justify-center gap-10 mt-1">
-                  <p>Like: {item.Like || 0}</p>
-                  <p>UnLike{item.UnLike || 0}</p>
-                  <p> FollowPost{item. FollowPost 
-                  || 0}</p>
+                  <p className="flex justify-center items-center gap-2"> <span>Like</span> <span>{item.Like || 0}</span></p>
+
+                  <p className="flex justify-center items-center gap-2">
+                    <span>UnLike </span>
+                    
+                   <span> {item.UnLike || 0}</span>
+
+
+                  </p>
+
+                  <p className="flex justify-center items-center gap-2">
+                    <span> FollowPost</span>
+                    
+                  <span>  {item. FollowPost 
+                  || 0}</span>
+                  
+                  </p>
+                  
                 </div>
               
                 
