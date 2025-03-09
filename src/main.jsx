@@ -34,6 +34,7 @@ import InfoPage from "./ProfilePage/InfoPage.jsx";
 import YourAllPost from "./ProfilePage/YourAllPost.jsx";
 import ProfileUpdate from "./ProfilePage/ProfileUpdate.jsx";
 import Dashboard from "./ProfilePage/Dashboard.jsx";
+import PrivateRoute from "./private/PrivateRoute.jsx";
 
 const queryClient = new QueryClient();
 
@@ -60,7 +61,7 @@ const route = createBrowserRouter([
       },
       {
         path:'/create-post',
-        element: <CreatePost/>
+        element: <PrivateRoute> <CreatePost/></PrivateRoute>
       },
       {
         path:'/all-users',

@@ -9,17 +9,16 @@ import useAuthMangedHook from "../hook/useAuthMangedHook";
 import usePublicHook from "../Api/usePublicHook";
 
 function Login() {
- 
-
   const useaxiosPublic = usePublicHook();
 
-  const {LoginWith_email_ans_password_handle,Login_with_Google_handle , setloading , setuser } = useAuthMangedHook();
+  const {
+    LoginWith_email_ans_password_handle,
+    Login_with_Google_handle,
+    setloading,
+    setuser,
+  } = useAuthMangedHook();
 
   const goHome = useNavigate();
-
-
-
-
 
   const animationOption = {
     loop: true,
@@ -29,84 +28,62 @@ function Login() {
 
   //   handle form
 
-  const handleLoginFormSubmit=  (event)=>{
-
-    const [ error , seterror ] = useState("");
+  const handleLoginFormSubmit = (event) => {
+    const [error, seterror] = useState("");
     // add google user
-    /// add to databse 
+    /// add to databse
     // password validation
 
-
     event.preventDefault();
-    const form_info= new FormData(event.target);
+    const form_info = new FormData(event.target);
     const form_data = Object.fromEntries(form_info);
-    const {email , password} = form_data;
-    console.log({email , password});
+    const { email, password } = form_data;
+    console.log({ email, password });
     setloading(true);
 
-
     LoginWith_email_ans_password_handle(email, password)
-    .then((result)=>{
-
-      setloading(false)
-      const user= result.users;
-      setuser(user);
-      goHome('/')
-      
-
-    })
-    .catch((error)=>{
-      console.log('this error from login page',error.name);
-      seterror(error.message)
-    })
+      .then((result) => {
+        setloading(false);
+        const user = result.users;
+        setuser(user);
+        goHome("/");
+      })
+      .catch((error) => {
+        console.log("this error from login page", error.name);
+        seterror(error.message);
+      });
 
     // google login fomrm
 
-    const Login_in_with_google_handle = () =>{
+   
+  };
+  const Login_in_with_google_handle = () => {
+    setloading(true);
+    Login_with_Google_handle()
+      .then((result) => {
 
-      setloading(true);
-      Login_with_Google_handle()
-      .then((result)=>{
         setloading(false);
-        const user= result.users;
-      setuser(user);
-      goHome('/')
-
-
+        const user = result.users;
+        setuser(user);
+        goHome("/");
       })
-      .catch((error)=>{
-        console.log(` we founed error on google login page `,error.code)
-      })
-    }
-
-
-  }
+      .catch((error) => {
+        console.log(` we founed error on google login page `, error.code);
+      });
+  };
 
   return (
     <div className="bg-gradient-to-br from-slate-900 to-teal-500  flex justify-center py-10  w-full min-h-screen ">
-
-
-
-
       <section class="hover:border-2 hover:border-teal-300/30  md:flex   backdrop-blur-md bg-black transform transition delay-100  border-2 min-h-screen w-10/11 rounded-2xl  ">
-
-
         <div className="flex-1  text-center bg-stone-100">
-
-    
-
-
-       <div className="rounded-xl">
-       <Lottie options={animationOption} className="rounded-2xl"  />
-       </div>
+          <div className="rounded-xl">
+            <Lottie options={animationOption} className="rounded-2xl" />
+          </div>
         </div>
 
-
         <div className="flex-1   text-white  p-2  md:mt-16">
-
           <form className=" py-10" onSubmit={handleLoginFormSubmit}>
             <div className="flex flex-col">
-
               <label htmlFor="" className="font-semibold">
                 Email :{" "}
               </label>
@@ -149,8 +126,7 @@ function Login() {
           </div>
           <div className="">
             <button
-    
-            onClick={Login_with_Google_handle}
+              onClick={Login_in_with_google_handle}
               class="flex items-center 
 
               mx-auto
@@ -177,7 +153,7 @@ function Login() {
                 />
               </svg>
 
-              <span class="mx-2">Sign in with Google</span>
+              <span class="mx-2" >Sign in with Google</span>
             </button>
 
             {/* no account */}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import useAuthMangedHook from "../hook/useAuthMangedHook";
 import usePublicHook, { useaxiosPublic } from "../Api/usePublicHook";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const img_bb_api_key = import.meta.env.VITE_YOUR_CLIENT_API_KEY;
 
@@ -17,8 +18,11 @@ function CreatePost() {
   const useaxiosPublic = usePublicHook();
 
   const [button, setbutton] = useState(true);
+  const goLogin = useNavigate();
 
   const createPost_button = async (event) => {
+
+  
 
     setbutton(false)
 
@@ -114,6 +118,7 @@ function CreatePost() {
             useaxiosPublic
               .put(`/count-post/${user?.email}`)
               .then((res) => {
+       
                 setbutton(true);
 
                 console.log("post udated");
