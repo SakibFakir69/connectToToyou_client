@@ -29,11 +29,11 @@ function Dashboard() {
 
   console.log(data);
 
-  const sanitizedData = data.map(item => ({
-    ...item,
-    Name: item.Name || 'Unknown',  // Replace null Name with 'Unknown'
-    Message: item.Message || 'No message available',  // Replace null Message with default text
-  }));
+  // const sanitizedData = data.map(item => ({
+  //   ...item,
+  //   Name: item.Name || 'Unknown',  // Replace null Name with 'Unknown'
+  //   Message: item.Message || 'No message available',  // Replace null Message with default text
+  // }));
 
 
   if (isLoading) {
@@ -47,7 +47,7 @@ function Dashboard() {
     );
   }
 
-  if(sanitizedData.length==0){
+  if(data.length==0){
     return (
       <div className=" w-full py-20 ">
         <div className="border flex justify-center items-center">
@@ -56,12 +56,13 @@ function Dashboard() {
       </div>
     )
   }
+  console.log(data);
 
   return (
     <div className="absolute overflow-hidden   -z-50 max-wd-full w-10/11">
       <ResponsiveContainer width="80%" height={500}>
         <ComposedChart
-          data={sanitizedData}
+          data={data}
           margin={{
             top: 20,
             right: 20,
@@ -70,7 +71,7 @@ function Dashboard() {
           }}
         >
           <CartesianGrid />
-          <XAxis dataKey="Date" scale="band" />
+          <XAxis dataKey="Like" scale="band" />
           <YAxis />
           <Tooltip />
           <Legend />
