@@ -63,15 +63,15 @@ function TopFollwer() {
               </div>
 
               <div className=" h-full w-full flex flex-col justify-center mx-auto items-center">
-                <p className="flex gap-2 justify-center items-center font-semibold"> <span className="md:text-xl text-sm ">Name</span>
+                <p className="flex gap-2 justify-center items-center font-semibold"> <span className="md:text-xl text-sm text-green-400">Name</span>
 
                 <span className="md:text-xl ">{item.Name}</span> 
                 </p>
 
 
-                <p className="flex  gap-2 font-semibold justify-center items-center"> <span className=" ">Follower </span>{item.Follow || 0}</p>
+                <p className="flex  gap-2 font-semibold justify-center items-center "> <span className=" text-yellow-400">Follower </span>{item.Follow || 0}</p>
 
-                <p className="flex gap-2 items-center"> <span className="">Total Post </span>
+                <p className="flex gap-2 items-center"> <span className="text-blue-600">Total Post </span>
 
                 <span className="">{item.Post || 0}</span>
                 </p>
