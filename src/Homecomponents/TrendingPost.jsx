@@ -66,17 +66,17 @@ function TrendingPost() {
                 {/* follow , like , unlike */}
 
                 <div className="text-center flex justify-center gap-10 mt-1">
-                  <p className="flex justify-center items-center gap-2"> <span>Like</span> <span>{item.Like || 0}</span></p>
+                  <p className="flex justify-center items-center gap-2 text-green-400"> <span>Like</span> <span>{item.Like || 0}</span></p>
 
-                  <p className="flex justify-center items-center gap-2">
+                  <p className="flex justify-center items-center gap-2 text-red-500">
                     <span>UnLike </span>
                     
-                   <span> {item.UnLike || 0}</span>
+                   <span className=""> {item.UnLike || 0}</span>
 
 
                   </p>
 
-                  <p className="flex justify-center items-center gap-2">
+                  <p className="flex justify-center items-center gap-2 text-yellow-400">
                     <span> FollowPost</span>
                     
                   <span>  {item. FollowPost 

@@ -69,7 +69,7 @@ const route = createBrowserRouter([
       },
       {
         path:'/mangepost',
-        element:<ManagePost/>
+        element:<PrivateRoute><ManagePost/></PrivateRoute>
       },
 
       // details page of new post 
