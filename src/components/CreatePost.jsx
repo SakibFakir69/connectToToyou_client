@@ -98,7 +98,7 @@ function CreatePost() {
         Email: user?.email,
         Like: 0,
         Date: postDate,
-        Name: user?.displayName,
+        Name: user?.displayName || "not founed",
         Image: res.data?.data.display_url,
         UnLike: 0,
         FollowPost: 0,

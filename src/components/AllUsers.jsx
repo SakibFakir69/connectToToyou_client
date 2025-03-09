@@ -90,7 +90,8 @@ function AllUsers() {
                   <p className="font-semibold">{item.Name}</p>
                   <p className="text-gray-500">{item.Email}</p>
                   <div className="flex gap-5 mt-2">
-                    <button className="btn">Follow</button>
+                    {/* <button className="btn">Follow</button> */}
+                    {/* work on it  */}
                  
                   </div>
                 </div>

@@ -9,6 +9,7 @@ import { BiCategory } from "react-icons/bi";
 import { PiSubtitlesThin } from "react-icons/pi";
 import { LuMessageSquareText } from "react-icons/lu";
 import { MdDriveFileRenameOutline } from "react-icons/md";
+import { toast, ToastContainer } from "react-toastify";
 
 function NewPostDetails() {
   const { id } = useParams();
@@ -46,7 +47,7 @@ function NewPostDetails() {
     const res = await useaxiosPublic.put(`/new-details-post/${id}`);
 
     if (res.status === 200) {
-      alert("liked");
+      toast.success("Like")
     }
 
     console.log("liked button cliked");
@@ -58,7 +59,7 @@ function NewPostDetails() {
     const res = await useaxiosPublic.put(`/new-details-post-unlike/${id}`);
 
     if (res.status === 200) {
-      alert("liked decremenr");
+      toast.success("UnLike")
     }
     console.log("liked decrement cliked");
 
@@ -92,6 +93,7 @@ function NewPostDetails() {
     <div className="w-full bg-color min-h-screen">
       {/* div div  */}
       {/* div */}
+      <ToastContainer/>
 
       <section className=" w-11/12 flex flex-col mx-auto py-10 ">
 

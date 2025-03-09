@@ -14,10 +14,20 @@ function YourAllPost() {
     queryFn: async () => {
       const res = await useaxiospai.get(`/manage-post/${user?.email}`);
 
-      return res.data;
+      return Array.isArray(res.data) ? res.data: [];
     },
   });
   console.log(yourPost);
+  if(yourPost.length==0){
+    return (
+      <div className=" w-full py-20 ">
+        <div className="border flex justify-center items-center">
+        <p>No Data founed</p>
+        </div>
+      </div>
+    )
+  }
+
 
   return (
     <div className="w-full">

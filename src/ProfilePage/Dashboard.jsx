@@ -27,42 +27,41 @@ function Dashboard() {
     },
   });
 
-  // Clean the data to remove any invalid or NaN values
-  const cleanedData = data.filter(item => {
+  console.log(data);
+
+  const sanitizedData = data.map(item => ({
+    ...item,
+    Name: item.Name || 'Unknown',  // Replace null Name with 'Unknown'
+    Message: item.Message || 'No message available',  // Replace null Message with default text
+  }));
+
+
+  if (isLoading) {
     return (
-      item.Like !== null &&
-      item.Like !== undefined &&
-      !isNaN(item.Like) &&
-      item.UnLike !== null &&
-      item.UnLike !== undefined &&
-      !isNaN(item.UnLike) &&
-      item.Date !== null &&
-      item.Date !== undefined
-    );
-  });
-
-
-  if(isLoading)
-  {
-    return <div>
-      <div className="py-20 text-center">
-        
-        <span className="loading loading-ring w-20"></span>
-        <p>Dashboard Loading</p>
-
+      <div>
+        <div className="py-20 text-center">
+          <span className="loading loading-ring w-20"></span>
+          <p>Dashboard Loading</p>
+        </div>
       </div>
-    </div>
+    );
+  }
+
+  if(sanitizedData.length==0){
+    return (
+      <div className=" w-full py-20 ">
+        <div className="border flex justify-center items-center">
+        <p>No Data founed</p>
+        </div>
+      </div>
+    )
   }
 
   return (
-    <div className="absolute overflow-hidden   -z-50 max-wd-full w-full">
-
-      <ResponsiveContainer width="80%" height={500} >
-      
-
+    <div className="absolute overflow-hidden   -z-50 max-wd-full w-10/11">
+      <ResponsiveContainer width="80%" height={500}>
         <ComposedChart
-          data={cleanedData}
-    
+          data={sanitizedData}
           margin={{
             top: 20,
             right: 20,
@@ -71,23 +70,16 @@ function Dashboard() {
           }}
         >
           <CartesianGrid />
-          <XAxis dataKey="PostName" scale="band" />
+          <XAxis dataKey="Date" scale="band" />
           <YAxis />
           <Tooltip />
           <Legend />
 
-          <Bar  dataKey="Like" barSize={20} fill="#413ea0"/>
+          <Bar dataKey="Like" barSize={20} fill="#413ea0" />
 
-          <Bar  dataKey="UnLike" barSize={20} fill="red"/>
-         
-         
+          <Bar dataKey="UnLike" barSize={20} fill="red" />
+          <Line dataKey={"Like"} type={"monotone"}/>
 
-          <Line type="monotone"  />
-        
-
-       
-          
-   
         </ComposedChart>
       </ResponsiveContainer>
     </div>
