@@ -16,7 +16,7 @@
 Here are some previews of **ConnectToYou** in action:  
 
 ### 🔹 Home Page  
-![Home Page](https://i.ibb.co.com/RpDT8LQv/Screenshot-2025-03-10-165957.pn)  
+![Home Page](https://i.ibb.co.com/RpDT8LQv/Screenshot-2025-03-10-165957.png)  
 
 
 
