@@ -83,7 +83,7 @@ function NavbarPage() {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm bg-black dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow "
+              className="menu menu-sm bg-black dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow font-semibold"
             >
               {links}
             </ul>
@@ -91,7 +91,7 @@ function NavbarPage() {
           <Link to={'/'} className="btn-ghost text-2xl font-bold">ConenctToyou</Link>
         </div>
         <div className="navbar-center hidden lg:flex ">
-          <ul className="menu menu-horizontal px-0">{links}</ul>
+          <ul className="menu menu-horizontal px-0 font-semibold">{links}</ul>
         </div>
         <div className="navbar-end">
 
