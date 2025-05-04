@@ -22,7 +22,7 @@ function NewAccount() {
 
   return (
     <div className="p-4 
-    bg-stone-300">
+    bg-white">
   
       <Swiper
         // install Swiper modules

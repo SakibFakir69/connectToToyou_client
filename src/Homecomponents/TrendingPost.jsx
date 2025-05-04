@@ -18,7 +18,7 @@ function TrendingPost() {
   const { isLoading, trendingPost } = UseTrendingPost();
 
   return (
-    <div className="p-6 bg-stone-300">
+    <div className="p-6 bg-white">
       {/* find trending post by top like post  */}
       {/* 10 data show here */}
 

@@ -2,10 +2,10 @@ import React from "react";
 
 function Faq() {
   return (
-    <div className="px-2 mb-6 bg-stone-300   flex flex-col gap-1 p-2">
+    <div className="px-2   flex flex-col gap-1 p-4 mb-6">
   
 
-      <div className="collapse collapse-arrow bg-white border border-base-300 shadow-2xl
+      <div className="collapse collapse-arrow border border-base-300 shadow-xl
       
       hover:shadow[0_0__15px_red] ">
 

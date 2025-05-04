@@ -83,7 +83,7 @@ function Post() {
             
             
             "
-            placeholder="Search Mockups, Logos..."
+            placeholder="Search ....."
             required
           />
          
