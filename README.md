@@ -20,7 +20,6 @@ Here are some previews of **ConnectToYou** in action:
 
 
 
-
 ## 🛠️ Tech Stack  
 
 **Frontend:** React (Vite), Tailwind CSS  
